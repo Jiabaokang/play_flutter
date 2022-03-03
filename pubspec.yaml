@@ -1,0 +1,108 @@
+name: play_flutter
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  # iOS图标库
+  cupertino_icons: ^1.0.2
+
+  #UI相关
+  oktoast: ^3.1.5
+  flutter_swiper_null_safety: ^1.0.2
+  pull_to_refresh: ^2.0.0
+
+  #界面刷新
+  provider: ^6.0.2
+
+  #getx 界面刷新
+  get: ^4.1.4
+
+  # dio网络请求
+  dio: ^4.0.0
+  dio_cookie_manager: ^2.0.0
+  cookie_jar: ^3.0.1
+  #首选项
+  shared_preferences: ^2.0.13
+  # 本地json对象存储
+  localstorage: ^4.0.0+1
+
+  # 获取设备信息
+  device_info_plus: ^3.2.2
+  # 获取包信息
+  package_info_plus: ^1.4.0
+  quiver: ^3.0.1+1
+
+  # Html Encoder/Decoder
+  html_unescape: ^2.0.0
+  # 解析html标签
+  flutter_html: ^2.2.1
+  # MD5数据处理
+  crypto: ^3.0.1
+  #webview_flutter: ^3.0.0
+
+  #判断list是否相等
+  collection: ^1.15.0
+  url_launcher: ^6.0.20
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^1.0.0
+
+# For information on the generic Dart part of this file, see the
+# following pages: https://dart.dev/tools/pub/pubspec
+
+# 以下章节专门针对 Flutter资源配置.
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: iconfont
+      fonts:
+        - asset: assets/fonts/iconfont.ttf
+    - family: kuaile # 站酷 快乐字体  https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
+      fonts:
+        - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+  assets:
+    - assets/animations/
+    - assets/images/
+    - CHANGELOG.md
+
+flutter_intl:
+  enabled: true
+
