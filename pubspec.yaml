@@ -74,6 +74,9 @@ dependencies:
   collection: ^1.15.0
   url_launcher: ^6.0.20
 
+  # lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
+  lottie: ^1.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
