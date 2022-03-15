@@ -10,6 +10,8 @@ class OfficialAccountPage extends StatelessWidget {
 
     final logic = Get.put(OfficialAccountLogic());
 
-    return Container();
+    return Container(
+      color: Colors.brown,
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:play_flutter/pages/login_page/login_view.dart';
+import 'package:play_flutter/pages/main_page/main_binding.dart';
 import 'package:play_flutter/pages/user_page/user_binding.dart';
 import '../pages/login_page/not_found_view.dart';
 import '../pages/login_page/splash_view.dart';
@@ -27,7 +28,10 @@ abstract class AppRoutes{
     //启动页面
     GetPage(name: splashPage, page: ()=> const SplashPage()),
     //主页面
-    GetPage(name: mainTabNav, page:()=> MainTabNavPage()),
+    GetPage(name: mainTabNav,
+        page:()=> MainTabNavPage(),
+      binding: MainBinding()
+    ),
     // 白名单
     GetPage(
       name: loginPage,

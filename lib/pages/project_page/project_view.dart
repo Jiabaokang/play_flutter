@@ -9,7 +9,7 @@ class ProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     color: Colors.red[200],
+     color: Colors.black,
     );
   }
 }

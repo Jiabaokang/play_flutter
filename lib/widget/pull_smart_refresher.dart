@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:play_flutter/base/get/controller/base_page_controller.dart';
+import 'package:play_flutter/res/r.dart';
 import 'package:play_flutter/res/strings.dart';
 import 'package:play_flutter/res/style.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../res/r.dart';
 import 'over_scroll_behavior.dart';
 
 ///刷新状态
@@ -80,6 +80,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
 
   @override
   Widget build(BuildContext context) {
+
     super.build(context);
     return SizedBox(
       width: double.infinity,

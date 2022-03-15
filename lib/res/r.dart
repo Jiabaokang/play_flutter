@@ -14,6 +14,9 @@ class R {
   static const String assetsIntegralRanking = 'assets/images/3.0x/ranking_integral.png';
   static const String assetsRankingTopBg = 'assets/images/3.0x/ranking_top_bg.png';
   static const String assetsShareQRCode = 'assets/images/3.0x/share_qrcode.png';
+  static const String assetsImagesSplashAndroid = 'assets/images/splash_android.png';
+  static const String assetsImagesSplashBg = 'assets/images/splash_bg.png';
+  static const String assetsImagesSplashBgDark = 'assets/images/splash_bg_dark.png';
 
   ///----------------------------SVG---------------------------
   static const String assetsImagesApplicationTransparent= 'assets/svg/application_transparent_icon.svg';

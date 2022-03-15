@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
-import '../../../config/resource_manager.dart';
-import '../../../generated/l10n.dart';
-import '../../routes/app_routes.dart';
+import 'package:play_flutter/config/resource_manager.dart';
+import 'package:play_flutter/res/r.dart';
+import 'package:play_flutter/res/strings.dart';
+import 'package:play_flutter/routes/app_routes.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -20,10 +21,9 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-
-   late final AnimationController _logoController;
-   late final Animation<double> _animation;
-   late final AnimationController _countdownController;
+  late final AnimationController _logoController;
+  late final Animation<double> _animation;
+  late final AnimationController _countdownController;
 
   @override
   void initState() {
@@ -62,10 +62,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         onWillPop: () => Future.value(false),
         child: Stack(fit: StackFit.expand, children: <Widget>[
           Image.asset(
-              ImageHelper.wrapAssets(
-                  Theme.of(context).brightness == Brightness.light
-                      ? 'splash_bg.png'
-                      : 'splash_bg_dark.png'),
+              Theme.of(context).brightness == Brightness.light
+                  ? R.assetsImagesSplashBg
+                  : R.assetsImagesSplashBgDark,
 //              colorBlendMode: BlendMode.srcOver,//colorBlendMode方式在android等机器上有些延迟,导致有些闪屏,故采用两套图片的方式
 //              color: Colors.black.withOpacity(
 //                  Theme.of(context).brightness == Brightness.light ? 0 : 0.65),
@@ -92,7 +91,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   nextPage(context);
                 },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   margin: const EdgeInsets.only(right: 20, bottom: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
@@ -129,7 +129,7 @@ class AnimatedCountdown extends AnimatedWidget {
   Widget build(BuildContext context) {
     var value = animation.value + 1;
     return Text(
-      (value == 0 ? '' : '$value | ') + S.of(context).splashSkip,
+      (value == 0 ? '' : '$value | ') + StringStyles.splashSkip.tr,
       style: const TextStyle(color: Colors.white),
     );
   }
@@ -150,7 +150,7 @@ class AnimatedFlutterLogo extends AnimatedWidget {
       alignment: Alignment(0, 0.2 + animation.value * 0.3),
       curve: Curves.bounceOut,
       child: Image.asset(
-        ImageHelper.wrapAssets('splash_flutter.png'),
+        R.assetsImagesSplashAndroid,
         width: 280,
         height: 120,
       ),

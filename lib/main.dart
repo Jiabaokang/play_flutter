@@ -1,64 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:play_flutter/config/Injection_init.dart';
+import 'package:play_flutter/pages/login_page/splash_view.dart';
+import 'package:play_flutter/res/strings.dart';
 import 'package:play_flutter/routes/app_routes.dart';
-import 'package:play_flutter/utils/logger.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'generated/l10n.dart';
+import 'package:play_flutter/utils/locale_util.dart';
 
 void main() async {
-  //初始化配置
+
+  WidgetsFlutterBinding.ensureInitialized();
+  /// 初始化配置
   await Injection.init();
-  // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
+  /// Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark));
-  //渲染界面
-  //runApp(const MainApp());
+  /// 渲染界面
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: true,
-    enableLog: true,
-    logWriterCallback: Logger.write,
-    initialRoute: AppRoutes.initial,
+    ///路由管理
     getPages: AppRoutes.routes,
+    ///第一个页面启动页面
+    //initialRoute: AppRoutes.initial,
+    ///查找路由失败提示界面
     unknownRoute: AppRoutes.unknownRoute,
-    locale: Get.deviceLocale,
-    localizationsDelegates: const [
-      S.delegate,
-      RefreshLocalizations.delegate, //下拉刷新
-      GlobalCupertinoLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate
-    ],
-    supportedLocales: S.delegate.supportedLocales,
+    ///国际化-数据来源
+    translations: Messages(),
+    ///默认语言
+    locale: LocaleOptions.getDefault(),
+    ///国际化支持-备用语言
+    fallbackLocale: const Locale('en', 'US'),
+    ///默认动画
+    defaultTransition: Transition.fade,
+    home: const SplashPage(),
+
   ));
 }
 
-// class MainApp extends StatelessWidget {
-//   const MainApp({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return OKToast(
-//       child: GetMaterialApp(
-//         debugShowCheckedModeBanner: true,
-//         enableLog: true,
-//         logWriterCallback: Logger.write,
-//         initialRoute: AppRoutes.initial,
-//         getPages: AppRoutes.routes,
-//         unknownRoute: AppRoutes.unknownRoute,
-//         locale: Get.deviceLocale,
-//         localizationsDelegates: const [
-//           S.delegate,
-//           RefreshLocalizations.delegate, //下拉刷新
-//           GlobalCupertinoLocalizations.delegate,
-//           GlobalMaterialLocalizations.delegate,
-//           GlobalWidgetsLocalizations.delegate
-//         ],
-//         supportedLocales: S.delegate.supportedLocales,
-//       ),
-//     );
-//   }
-// }

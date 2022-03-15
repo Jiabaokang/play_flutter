@@ -13,10 +13,9 @@ class Injection{
   static Future<void> init() async{
 
     //初始化配置项
-    //Get.putAsync(()=> SharedPreferences.getInstance());
-    Get.lazyPut(() => SharedPreferences.getInstance());
+    await Get.putAsync(() => SharedPreferences.getInstance());
     //将网络请求数据仓库进行注入
-    Get.lazyPut(() => RequestRepository());
+    Get.lazyPut(() =>RequestRepository());
 
     await Get.putAsync(() => GlobalConfigService().init());
     // await Get.putAsync(() => StorageManager.init());

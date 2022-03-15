@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
-import '../../generated/l10n.dart';
-import '../home_page/home_view.dart';
-import '../official_account_page/official_account_view.dart';
-import '../project_page/project_view.dart';
-import '../structure_page/structure_view.dart';
-import '../user_page/user_view.dart';
+import 'package:play_flutter/pages/home_page/home_view.dart';
+import 'package:play_flutter/pages/official_account_page/official_account_view.dart';
+import 'package:play_flutter/pages/project_page/project_view.dart';
+import 'package:play_flutter/pages/structure_page/structure_view.dart';
+import 'package:play_flutter/pages/user_page/user_view.dart';
+import 'package:play_flutter/res/strings.dart';
 import 'main_logic.dart';
 
 /// author : JiaBaoKang
@@ -24,7 +24,7 @@ class MainTabNavPage extends StatelessWidget {
     HomePage(),
     ProjectPage(),
     OfficialAccountPage(),
-    StructurePage(),
+    const StructurePage(),
     UserPage()
   ];
 
@@ -72,25 +72,25 @@ class MainTabNavPage extends StatelessWidget {
 
   //底部tab选项
   List<BottomNavigationBarItem> _bottomNavigationBarItems(context) => [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.home),
-          label: S.of(context).tabHome,
+         BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: StringStyles.tabHome.tr,
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.format_list_bulleted),
-          label: S.of(context).tabProject,
+         BottomNavigationBarItem(
+          icon: Icon(Icons.format_list_bulleted),
+          label: StringStyles.tabProject.tr,
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.group_work),
-          label: S.of(context).wechatAccount,
+         BottomNavigationBarItem(
+          icon: Icon(Icons.group_work),
+          label: StringStyles.wechatAccount.tr,
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.call_split),
-          label: S.of(context).tabStructure,
+         BottomNavigationBarItem(
+          icon: Icon(Icons.call_split),
+          label: StringStyles.tabStructure.tr,
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.insert_emoticon),
-          label: S.of(context).tabUser,
+         BottomNavigationBarItem(
+          icon: Icon(Icons.insert_emoticon),
+          label: StringStyles.tabUser.tr,
         ),
       ];
 }

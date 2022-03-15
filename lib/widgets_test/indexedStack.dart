@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
 /// date   : 2022/3/12 19:57
-/// desc   :
+/// desc   : 验证 IndexedStackDemo
 ///
 void main() {
   runApp(const MaterialApp(
@@ -58,7 +58,6 @@ class _IndexedStackDemoState extends State<IndexedStackDemo> {
                 ],
               ),
             ),
-
           ],
         ),
       ),
@@ -71,11 +70,4 @@ class _IndexedStackDemoState extends State<IndexedStackDemo> {
       value: _index == 0,
       onChanged: (v) => setState(() => _index = v ? 0 : 1));
 
-// Widget _buildSwitch() => Switch(
-//     value: _index == 0,
-//     onChanged: (v) {
-//       setState(() {
-//         _index = v ? 0 : 1;
-//       });
-//     });
 }

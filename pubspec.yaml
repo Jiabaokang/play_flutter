@@ -30,8 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_localizations:
-    sdk: flutter
+#  flutter_localizations:
+#    sdk: flutter
 
   # iOS图标库
   cupertino_icons: ^1.0.2
@@ -42,7 +42,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
 
   #界面刷新
-  provider: ^6.0.2
+#  provider: ^6.0.2
 
   #getx 界面刷新
   get: ^4.1.4
@@ -76,6 +76,8 @@ dependencies:
 
   # lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
   lottie: ^1.2.2
+  # 加载SVG图片 https://pub.flutter-io.cn/packages/flutter_svg
+  flutter_svg: 0.22.0
 
 dev_dependencies:
   flutter_test:
@@ -98,14 +100,19 @@ flutter:
     - family: iconfont
       fonts:
         - asset: assets/fonts/iconfont.ttf
-    - family: kuaile # 站酷 快乐字体  https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
+
+      # 站酷 快乐字体  https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
+    - family: kuaile
       fonts:
-        - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+        - asset: assets/fonts/kuaile.ttf
   assets:
     - assets/animations/
     - assets/images/
+    - assets/svg/
+    - assets/lottie/
+
     - CHANGELOG.md
 
-flutter_intl:
-  enabled: true
+#flutter_intl:
+#  enabled: true
 
