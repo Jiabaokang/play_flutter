@@ -9,12 +9,8 @@ import 'dart:collection';
 class R {
 
   ///----------------------------PNG、JPG---------------------------
-  static const String assetsImagesApplication= 'assets/images/3.0x/application_icon.png';
-  static const String assetsImagesLoginBackground= 'assets/images/3.0x/bg_login.png';
-  static const String assetsIntegralRanking = 'assets/images/3.0x/ranking_integral.png';
-  static const String assetsRankingTopBg = 'assets/images/3.0x/ranking_top_bg.png';
-  static const String assetsShareQRCode = 'assets/images/3.0x/share_qrcode.png';
   static const String assetsImagesSplashAndroid = 'assets/images/splash_android.png';
+  static const String assetsImagesSplashFun = 'assets/images/splash_fun.png';
   static const String assetsImagesSplashBg = 'assets/images/splash_bg.png';
   static const String assetsImagesSplashBgDark = 'assets/images/splash_bg_dark.png';
 

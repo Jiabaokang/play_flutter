@@ -47,10 +47,12 @@ dependencies:
   #getx 界面刷新
   get: ^4.1.4
 
-  # dio网络请求
+  # dio网络请求 https://pub.flutter-io.cn/packages/dio
   dio: ^4.0.0
   dio_cookie_manager: ^2.0.0
   cookie_jar: ^3.0.1
+  # 网络检测 https://pub.flutter-io.cn/packages/connectivity
+  connectivity: 3.0.6
   #首选项
   shared_preferences: ^2.0.13
   # 本地json对象存储

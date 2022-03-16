@@ -7,6 +7,7 @@ import 'package:play_flutter/pages/official_account_page/official_account_view.d
 import 'package:play_flutter/pages/project_page/project_view.dart';
 import 'package:play_flutter/pages/structure_page/structure_view.dart';
 import 'package:play_flutter/pages/user_page/user_view.dart';
+import 'package:play_flutter/res/colors.dart';
 import 'package:play_flutter/res/strings.dart';
 import 'main_logic.dart';
 

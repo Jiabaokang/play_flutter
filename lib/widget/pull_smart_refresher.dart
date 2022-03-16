@@ -27,8 +27,8 @@ enum Refresh {
 /// desc   : 上拉刷新、下拉加载、空白页加载动画
 /// 通过在基类BaseGetController中维护上拉刷新、下拉加载、控制器等等状态
 /// 不需要暴露给使用者，当然，此方法只能使用Getx框架有效
-class RefreshWidget<Controller extends BaseGetPageController>
-    extends StatefulWidget {
+class RefreshWidget<Controller extends BaseGetPageController> extends StatefulWidget {
+
   final String? tag = null;
 
   ///获取BaseGetController子类对象，在GetX中，任何BaseGetController都可以通过此方法获取

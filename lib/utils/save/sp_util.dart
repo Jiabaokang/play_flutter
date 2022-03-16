@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:play_flutter/config/lang/Language.dart';
+import 'package:play_flutter/model/user_model/user_bean.dart';
 import 'package:play_flutter/utils/save/sp_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// date   : 2022/3/15 18:12
 /// desc   : 键值对本地存储
 class SpUtil {
+
+  ///获取用户信息
+  static UserBean? getUserInfo(){
+    SharedPreferences sp = Get.find<SharedPreferences>();
+    try{
+      var json = sp.getString(SPKey.keyUserInfo);
+      if(json != null){
+        return UserBean.fromJson(jsonDecode(json));
+      }
+    }catch(e){
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 
   ///删除存储用户信息
   static deleteUserInfo() {

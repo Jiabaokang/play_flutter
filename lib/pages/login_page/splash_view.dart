@@ -58,6 +58,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: WillPopScope(
         onWillPop: () => Future.value(false),
         child: Stack(fit: StackFit.expand, children: <Widget>[
@@ -65,9 +66,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               Theme.of(context).brightness == Brightness.light
                   ? R.assetsImagesSplashBg
                   : R.assetsImagesSplashBgDark,
-//              colorBlendMode: BlendMode.srcOver,//colorBlendMode方式在android等机器上有些延迟,导致有些闪屏,故采用两套图片的方式
-//              color: Colors.black.withOpacity(
-//                  Theme.of(context).brightness == Brightness.light ? 0 : 0.65),
               fit: BoxFit.fill),
           AnimatedFlutterLogo(
             animation: _animation,
@@ -172,12 +170,12 @@ class AnimatedAndroidLogo extends AnimatedWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Image.asset(
-          ImageHelper.wrapAssets('splash_fun.png'),
+          R.assetsImagesSplashFun,
           width: 140 * animation.value,
           height: 80 * animation.value,
         ),
         Image.asset(
-          ImageHelper.wrapAssets('splash_android.png'),
+          R.assetsImagesSplashAndroid,
           width: 200 * (1 - animation.value),
           height: 80 * (1 - animation.value),
         ),
