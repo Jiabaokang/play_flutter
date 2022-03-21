@@ -41,10 +41,7 @@ dependencies:
   flutter_swiper_null_safety: ^1.0.2
   pull_to_refresh: ^2.0.0
 
-  #界面刷新
-#  provider: ^6.0.2
-
-  #getx 界面刷新
+  #getx 界面状态管理刷新
   get: ^4.1.4
 
   # dio网络请求 https://pub.flutter-io.cn/packages/dio
@@ -76,10 +73,18 @@ dependencies:
   collection: ^1.15.0
   url_launcher: ^6.0.20
 
-  # lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
+  # Lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
   lottie: ^1.2.2
   # 加载SVG图片 https://pub.flutter-io.cn/packages/flutter_svg
   flutter_svg: 0.22.0
+  # Toast提示 https://pub.flutter-io.cn/packages/fluttertoast
+  fluttertoast: ^8.0.9
+  # https://pub.flutter-io.cn/packages/permission_handler/example
+  permission_handler: ^9.2.0
+  # 图片保存本地 https://pub.flutter-io.cn/packages/image_gallery_saver
+  image_gallery_saver: ^1.7.1
+  # 图片选择器 https://pub.flutter-io.cn/packages/image_picker/example
+  image_picker: ^0.8.4+11
 
 dev_dependencies:
   flutter_test:

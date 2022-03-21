@@ -13,6 +13,7 @@ class R {
   static const String assetsImagesSplashFun = 'assets/images/splash_fun.png';
   static const String assetsImagesSplashBg = 'assets/images/splash_bg.png';
   static const String assetsImagesSplashBgDark = 'assets/images/splash_bg_dark.png';
+  static const String assetsImagesShareQRCode = 'assets/images/share_qrcode.png';
 
   ///----------------------------SVG---------------------------
   static const String assetsImagesApplicationTransparent= 'assets/svg/application_transparent_icon.svg';

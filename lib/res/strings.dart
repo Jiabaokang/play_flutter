@@ -197,7 +197,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
     'zh_CN': {
-      StringStyles.appName: '博时',
+      StringStyles.appName: 'PlayFlutter',
       StringStyles.loading: '加载中...',
       StringStyles.loginAccountNameHint: '请输入账号名',
       StringStyles.loginAccountPwdHint: '请输入密码',
@@ -233,7 +233,7 @@ class Messages extends Translations {
       StringStyles.userRankingTitle: '积分排行榜',
       StringStyles.userRankingNumber: '排名',
       StringStyles.userRankingCoin: '累计积分',
-      StringStyles.aboutTitle: '关于博时',
+      StringStyles.aboutTitle: '关于PlayFlutter',
       StringStyles.aboutVersion: '版本:',
       StringStyles.aboutBuild: 'build:',
       StringStyles.aboutGithub: 'Github',
@@ -271,7 +271,7 @@ class Messages extends Translations {
       StringStyles.enter: "确认",
       StringStyles.quit: "取消",
       StringStyles.shareApplication: "实用博客APP推荐给您",
-      StringStyles.shareHint: "博时,您的博客管家",
+      StringStyles.shareHint: "PlayFlutter,学习Flutter啦",
       StringStyles.shareSaveLocal: "保存到本地",
       StringStyles.shareBrowser: "浏览器打开",
       StringStyles.saveSuccess: "保存成功",
@@ -435,7 +435,7 @@ class Messages extends Translations {
       StringStyles.enter: "確認",
       StringStyles.quit: "取消",
       StringStyles.shareApplication: "實用博客APP推薦給您",
-      StringStyles.shareHint: "博時,您的博客管家",
+      StringStyles.shareHint: "PlayFlutter,学习Flutter啦",
       StringStyles.shareSaveLocal: "保存到本地",
       StringStyles.shareBrowser: "瀏覽器打開",
       StringStyles.saveSuccess: "保存成功",
@@ -537,7 +537,7 @@ class Messages extends Translations {
       StringStyles.enter: "確認",
       StringStyles.quit: "取消",
       StringStyles.shareApplication: "實用博客APP推薦給您",
-      StringStyles.shareHint: "博時,您的博客管家",
+      StringStyles.shareHint: "PlayFlutter,学习Flutter啦",
       StringStyles.shareSaveLocal: "保存到本地",
       StringStyles.shareBrowser: "瀏覽器打開",
       StringStyles.saveSuccess: "保存成功",
@@ -644,7 +644,7 @@ class Messages extends Translations {
       StringStyles.quit: "Quit",
       StringStyles.shareApplication:
       "Practical blog app recommended to you",
-      StringStyles.shareHint: "Bosera, your blog steward",
+      StringStyles.shareHint: "PlayFlutter,学习Flutter啦",
       StringStyles.shareSaveLocal: "Save to local",
       StringStyles.shareBrowser: "Browser opens",
       StringStyles.saveSuccess: "Saved successfully",
