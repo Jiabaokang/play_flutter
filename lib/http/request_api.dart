@@ -1,7 +1,7 @@
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
 /// date   : 2022/3/16 15:51
-/// desc   :
+/// desc   : Android相关接口
 ///
 class RequestApi{
 
@@ -20,7 +20,6 @@ class RequestApi{
   static const String apiPoints = 'lg/coin/list/page/json';
   ///积分排行榜接口
   static const String apiRanking = 'coin/rank/page/json';
-
 
 
 

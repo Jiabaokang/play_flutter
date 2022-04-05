@@ -74,23 +74,23 @@ class MainTabNavPage extends StatelessWidget {
   //底部tab选项
   List<BottomNavigationBarItem> _bottomNavigationBarItems(context) => [
          BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: const Icon(Icons.home),
           label: StringStyles.tabHome.tr,
         ),
          BottomNavigationBarItem(
-          icon: Icon(Icons.format_list_bulleted),
+          icon: const Icon(Icons.format_list_bulleted),
           label: StringStyles.tabProject.tr,
         ),
          BottomNavigationBarItem(
-          icon: Icon(Icons.group_work),
+          icon: const Icon(Icons.group_work),
           label: StringStyles.wechatAccount.tr,
         ),
          BottomNavigationBarItem(
-          icon: Icon(Icons.call_split),
+          icon: const Icon(Icons.call_split),
           label: StringStyles.tabStructure.tr,
         ),
          BottomNavigationBarItem(
-          icon: Icon(Icons.insert_emoticon),
+          icon: const Icon(Icons.insert_emoticon),
           label: StringStyles.tabUser.tr,
         ),
       ];

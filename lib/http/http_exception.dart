@@ -8,7 +8,10 @@ import 'package:play_flutter/utils/platform_utils.dart';
 /// desc   : 数据请求错误信息处理
 class HttpException {
 
+
   static const int success = 200;
+  static const int API_SUCCESS = 0;
+
   static const int successNotContent = 204;
   static const int unauthorized = 401;
   static const int forbidden = 403;
