@@ -19,15 +19,29 @@ class HomeFirstPage extends GetSaveView<HomeFirstLogic> {
         child: Column(
           children: [
             Expanded(
-                child: Container(
-              color: Colors.white,
-              child: RefreshWidget<HomeFirstLogic>(
-                child: ListView.builder(itemBuilder: (context, index) {
+              child: Container(
+                color: Colors.white,
+                child: RefreshWidget<HomeFirstLogic>(
+                  child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      //itemCount: controller.projectData.length,
+                      itemBuilder: (context, index) {
+                        if(index == 0){
+                          return Container(
+                            margin: const EdgeInsets.only(top: 10.0,bottom: 10.0),
+                            width: double.infinity,
+                            height: 140,
+                            //child: BannerW,
+                          );
+                        }else{
 
-                  return Text("data");
-                }),
+                        return Text("data");
+                        };
+                      }),
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),

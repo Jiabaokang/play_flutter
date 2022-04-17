@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:play_flutter/base/get/get_extension_method.dart';
 import 'package:play_flutter/http/http_exception.dart';
 import 'package:play_flutter/http/http_request.dart';
