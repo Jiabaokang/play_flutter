@@ -13,4 +13,6 @@ class SquarePage extends GetSaveView<SquareLogic> {
 
     return Container();
   }
+
+
 }

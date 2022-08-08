@@ -75,7 +75,7 @@ class MainTabNavPage extends StatelessWidget {
   List<BottomNavigationBarItem> _bottomNavigationBarItems(context) => [
          BottomNavigationBarItem(
           icon: const Icon(Icons.home),
-          label: StringStyles.tabHome.tr,
+          label: StringStyles.homeComplex.tr,
         ),
          BottomNavigationBarItem(
           icon: const Icon(Icons.format_list_bulleted),

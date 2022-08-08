@@ -9,6 +9,7 @@ import 'package:play_flutter/routes/app_routes.dart';
 import 'package:play_flutter/utils/locale_util.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
   /// 初始化配置

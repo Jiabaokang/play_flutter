@@ -39,6 +39,8 @@ class HomeFirstLogic extends BaseGetPageController {
           precacheImage(NetworkImage(element.imagePath), Get.context!);
         }
       }
+
+
       //TODO 测试数据
       showSuccess(projectData);
 
