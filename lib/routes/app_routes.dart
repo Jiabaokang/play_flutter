@@ -13,13 +13,23 @@ import '../pages/main_page/main_view.dart';
 
 abstract class AppRoutes{
 
+  ///启动页
   static const String splashPage = "/splashPage";
 
+  ///主页面切换
   static const String mainTabNav = '/mainTabNav';
 
+  ///登录页面
   static const String loginPage = "/loginPage";
 
+  ///webView
+  static const String webViewPage = '/webView';
+
+  ///无页面
   static const String notFound = "/notFound";
+
+  ///积分排行榜
+  static const String rankingPage = '/ranking';
 
   ///项目中第一个要显示的页面，启动页
   static const initial = splashPage;

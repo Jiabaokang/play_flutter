@@ -43,6 +43,13 @@ class R {
   static const String assetsLottieRefreshError = 'assets/lottie/refresh_error.json';
   static const String assetsLottieCollect = 'assets/lottie/collect_success.json';
 
+  ///----------------------------images---------------------------
+  static const String assetsImagesRankingIntegral = 'assets/images/ranking_integral.png';
+  static const String assetsImagesApplicationIcon3 = 'assets/images/application_icon3.png';
+  static const String assetsImagesBgLogin = 'assets/images/bg_login.png';
+
+
+
   ///微信公众号图片
   static Map<int , String> wechatPublic = {
     408 : 'assets/images/3.0x/wechat_public_408.jpg',

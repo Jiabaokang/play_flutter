@@ -7,6 +7,8 @@ import 'package:play_flutter/model/user_model/user_bean.dart';
 import 'package:play_flutter/utils/save/sp_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../model/project_model/project_model.dart';
+
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
 /// date   : 2022/3/15 18:12
@@ -95,6 +97,23 @@ class SpUtil {
   ///浏览记录长度
   static int getBrowseHistoryLength() {
     return getBrowseHistory().length;
+  }
+
+  /// 浏览历史记录
+  /// [detail] 浏览记录
+  static saveBrowseHistory(ProjectDetail detail) {
+    var history = getBrowseHistory();
+    for (var element in history) {
+      Map<String, dynamic> map = jsonDecode(element);
+      var convert = ProjectDetail.fromJson(map);
+      if(convert.id == detail.id){
+        return;
+      }
+    }
+    var toJson = jsonEncode(detail.toJson());
+    history.insert(0 , toJson);
+    Get.find<SharedPreferences>()
+        .setStringList(SPKey.browseHistory, history);
   }
 
 
