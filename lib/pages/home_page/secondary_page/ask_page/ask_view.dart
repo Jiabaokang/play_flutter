@@ -18,4 +18,10 @@ class AskPage extends GetSaveView<AskLogic> {
       child: const Center(child: Text("这是首页")),
     );
   }
+
+
+
+
+
+
 }

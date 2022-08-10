@@ -67,14 +67,14 @@ class RefreshWidget<Controller extends BaseGetPageController> extends StatefulWi
 ///混入AutomaticKeepAliveClientMixin，避免界面刷新后状态丢失
 class _RefreshWidgetState extends State<RefreshWidget>
     with AutomaticKeepAliveClientMixin {
+
   ///下拉刷新和上拉加载更多的控制制器，内部维护[RefreshController]
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController controller = RefreshController(initialRefresh: false);
 
   @override
   void initState() {
     ///初始化加载控制器
-    widget.getController.initPullLoading(refreshController);
+    widget.getController.initPullLoading(controller);
     super.initState();
   }
 
@@ -97,15 +97,17 @@ class _RefreshWidgetState extends State<RefreshWidget>
                   behavior: OverScrollBehavior(),
                   child: SmartRefresher(
                     //上拉和下拉刷新的配置
-                    controller: refreshController,
+                    controller: controller,
                     enablePullUp: widget.enablePullUp,
                     enablePullDown: widget.enablePullDown,
                     onRefresh: () =>
-                        widget.getController.onLoadRefresh(refreshController),
+                        widget.getController.onLoadRefresh(controller),
                     onLoading: () =>
-                        widget.getController.onLoadMore(refreshController),
+                        widget.getController.onLoadMore(controller),
                     header: _getBuildCustomHeader(),
                     footer: _getBuildCustomFooter(),
+                    /// 这个属性Widget需要是ListView
+                    child: widget.child,
                   ),
                 ),
               )),

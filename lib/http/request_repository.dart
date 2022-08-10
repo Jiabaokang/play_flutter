@@ -3,6 +3,7 @@ import 'package:play_flutter/http/request.dart';
 import 'package:play_flutter/http/request_api.dart';
 import 'package:play_flutter/model/home_model/banner_bean.dart';
 import 'package:play_flutter/model/project_model/project_model.dart';
+import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
 
 typedef SuccessOver<T> = Function(T data, bool over);
 
@@ -60,5 +61,26 @@ class RequestRepository {
         }
       },
     );
+  }
+
+
+  ///获取微信公众号列表
+  getWechatPublic({
+    Success<List<WechatPublic>>? success,
+    Fail? fail,
+  }) {
+    Request.get<List<dynamic>>(RequestApi.apiWechatPublic, {}, dialog: false,
+        success: (data) {
+          if (success != null) {
+            var list = data.map((value) {
+              return WechatPublic.fromJson(value);
+            }).toList();
+            success(list);
+          }
+        }, fail: (code, msg) {
+          if (fail != null) {
+            fail(code, msg);
+          }
+        });
   }
 }

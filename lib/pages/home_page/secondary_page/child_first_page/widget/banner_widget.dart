@@ -54,9 +54,7 @@ class _BannerState extends State<BannerWidget> {
     );
   }
 
-  ///初始化定时任务
-  void initTimer() {}
-
+  ///构建PageView
   Widget _buildPageView() {
     if (widget.bannerList.isEmpty) {
       return const SizedBox();
@@ -107,7 +105,7 @@ class _BannerState extends State<BannerWidget> {
     );
   }
 
-  ///banner指示器
+  ///构建banner指示器
   Widget _buildIndicator() {
     if (widget.bannerList.isEmpty) {
       return const SizedBox();
@@ -131,6 +129,33 @@ class _BannerState extends State<BannerWidget> {
             .toList(),
       ),
     );
+  }
+
+  ///初始化定时任务
+  void initTimer() {
+    _time?.cancel();
+    _time = null;
+    //实例化
+    _time = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (widget.bannerList.isEmpty) {
+        return;
+      }
+
+      ///修改下标的值 达到切换PageView
+      _curIndex++;
+
+      ///widget和控制器是否已经关联
+      if (!_pageController.hasClients) {
+        return;
+      }
+
+      ///增加轮播动画
+      _pageController.animateToPage(
+        _curIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.linear,
+      );
+    });
   }
 
   ///切换页面,并更新小圆点

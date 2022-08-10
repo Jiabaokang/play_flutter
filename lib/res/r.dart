@@ -1,11 +1,8 @@
 
-
-import 'dart:collection';
-
-/// @class : R
-/// @date : 2021/8/1
-/// @name : jhf
-/// @description :图片、动画、SVG资源文件
+/// author : JiaBaoKang
+/// e-mail : jiabaokangsy@gmail.com
+/// date   : 2022/8/10 16:45
+/// desc   : 图片、动画、SVG资源文件
 class R {
 
   ///----------------------------PNG、JPG---------------------------

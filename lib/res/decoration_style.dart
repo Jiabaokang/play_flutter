@@ -8,6 +8,7 @@ import 'colors.dart';
 /// @name : jhf
 /// @description : 背景
 class DecorationStyle {
+
   ///圆角背景
   ///背景：自定义
   ///圆角：自定义

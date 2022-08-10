@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'package:play_flutter/base/get/getx_controller_inject.dart';
+import 'package:play_flutter/widget/pull_smart_refresher.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../../widget/pull_smart_refresher.dart';
-import '../getx_controller_inject.dart';
+
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -11,6 +12,8 @@ import '../getx_controller_inject.dart';
 /// 此页面暂时不对数据进行处理，不放置List在此处，因为当前已经很简洁了，不需要绑定[RefreshWidget]进行节省代码
 
 class BaseGetPageController extends BaseGetController {
+
+
   ///加载状态: 0加载中 1加载成功 2数据为空 3加载失败
   var loadStatus = 0.obs;
 
