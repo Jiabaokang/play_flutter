@@ -63,7 +63,6 @@ class RequestRepository {
     );
   }
 
-
   ///获取微信公众号列表
   getWechatPublic({
     Success<List<WechatPublic>>? success,
@@ -71,16 +70,79 @@ class RequestRepository {
   }) {
     Request.get<List<dynamic>>(RequestApi.apiWechatPublic, {}, dialog: false,
         success: (data) {
-          if (success != null) {
-            var list = data.map((value) {
-              return WechatPublic.fromJson(value);
-            }).toList();
-            success(list);
-          }
-        }, fail: (code, msg) {
-          if (fail != null) {
-            fail(code, msg);
-          }
-        });
+      if (success != null) {
+        var list = data.map((value) {
+          return WechatPublic.fromJson(value);
+        }).toList();
+        success(list);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  /// 请求广场列表接口
+  /// [page] 当前第几页
+  /// [callSuccess] 成功回调
+  /// [callFail] 失败回调
+  getSquareModule(
+    int page, {
+    required SuccessOver<List<ProjectDetail>> callSuccess,
+    required Fail callFail,
+  }) {
+    Request.get<dynamic>(
+      RequestApi.apiSquare.replaceFirst(RegExp("page"), "${page - 1}"),
+      {},
+      dialog: false,
+      success: (data) {
+        var projectPage = ProjectPage.fromJson(data);
+        List<ProjectDetail> projectList = projectPage.datas
+            .map((json) => ProjectDetail.fromJson(json))
+            .toList();
+
+        callSuccess(projectList, projectPage.over);
+      },
+      fail: (code, msg) {
+        callFail(code, msg);
+      },
+    );
+  }
+
+  ///获取问答列表数据
+  /// [page] 当前第几页
+  /// [callSuccess] 成功回调
+  /// [callFail] 失败回调
+  getAskList(
+    int page, {
+    required SuccessOver<List<ProjectDetail>> callSuccess,
+    required Fail callFail,
+  }) {
+    //请求地址
+    var url = RequestApi.apiAsk.replaceFirst(RegExp("page"), "${page - 1}");
+
+    ///执行具体的网络请求，将结果对调给调用方
+    Request.get<dynamic>(
+      url,
+      {},
+      dialog: false,
+      success: (data) {
+        //分页数据
+        ProjectPage projectData = ProjectPage.fromJson(data);
+        //列表数据
+        List<ProjectDetail> projectList = projectData.datas
+            .map((json) => ProjectDetail.fromJson(json))
+            .toList();
+
+        ///将请求成成并解析后的数据回调出去
+        callSuccess(projectList, projectData.over);
+      },
+
+      ///将请求失败的结果回调出去
+      fail: (code, msg) {
+        callFail(code, msg);
+      },
+    );
   }
 }

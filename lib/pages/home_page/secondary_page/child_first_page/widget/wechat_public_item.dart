@@ -10,15 +10,11 @@ import 'package:play_flutter/res/style.dart';
 /// e-mail : jiabaokangsy@gmail.com
 /// date   : 2022/8/10 16:42
 /// desc   : 首页 微信公众号Item
-class WechatPublicItem extends StatelessWidget{
+class WechatPublicItem extends StatelessWidget {
 
-  WechatPublic item;
+  final WechatPublic item;
 
-
-   WechatPublicItem({
-    Key? key ,
-    required this.item
-  }) : super(key: key);
+  const WechatPublicItem({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +26,21 @@ class WechatPublicItem extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              child: R.wechatPublic.containsKey(item.id) ?
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child:Container(
-                  width: 64,
-                  height: 64,
-                  color: Colors.white,
-                  child:  Image.asset(
-                      R.wechatPublic[item.id] ?? ""
-                  ) ,
-                ) ,
-              ) :HeadCircleWidget(
-                width: 64,
-                height: 64,
-              ),
               decoration: ShadowStyle.black12Circle40(),
+              child: R.wechatPublic.containsKey(item.id)
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Container(
+                        width: 64,
+                        height: 64,
+                        color: Colors.white,
+                        child: Image.asset(R.wechatPublic[item.id] ?? ""),
+                      ),
+                    )
+                  : HeadCircleWidget(
+                      width: 64,
+                      height: 64,
+                    ),
             ),
             Box.vBox15,
             Row(
@@ -66,5 +61,4 @@ class WechatPublicItem extends StatelessWidget{
           ],
         ));
   }
-
 }

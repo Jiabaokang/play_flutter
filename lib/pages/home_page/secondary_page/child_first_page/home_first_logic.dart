@@ -9,7 +9,7 @@ import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
 import 'package:play_flutter/res/r.dart';
 import 'package:play_flutter/utils/ext/refresh_extension.dart';
 import 'package:play_flutter/widget/pull_smart_refresher.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -147,8 +147,8 @@ class HomeFirstLogic extends BaseGetPageController {
 
   ///获取随机的公众号数据
   getRandomPublicData(List<WechatPublic> data) {
-    final _random = Random();
-    var randomIndex = _random.nextInt(data.length - 2);
+    final random = Random();
+    var randomIndex = random.nextInt(data.length - 2);
     return data.sublist(randomIndex, randomIndex + 2);
   }
 

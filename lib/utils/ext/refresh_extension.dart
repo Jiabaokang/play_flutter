@@ -2,7 +2,7 @@ import 'package:get/get_utils/get_utils.dart';
 import 'package:play_flutter/res/strings.dart';
 import 'package:play_flutter/utils/toast_util.dart';
 import 'package:play_flutter/widget/pull_smart_refresher.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com

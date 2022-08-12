@@ -34,18 +34,20 @@ dependencies:
 #    sdk: flutter
 
   # iOS图标库
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
 
   #UI相关
-  oktoast: ^3.1.5
-  flutter_swiper_null_safety: ^1.0.2
-  pull_to_refresh: ^2.0.0
+  oktoast: ^3.2.0
+  flutter_swiper_null_safety_flutter3: ^2.0.0
+  # 下拉刷新 支持flutter3 [https://github.com/peng8350/flutter_pulltorefresh]
+  # pull_to_refresh: ^2.0.1
+  pull_to_refresh_flutter3: ^2.0.1
 
   #getx 界面状态管理刷新
-  get: ^4.1.4
+  get: ^4.6.5
 
   # dio网络请求 https://pub.flutter-io.cn/packages/dio
-  dio: ^4.0.0
+  dio: ^4.0.6
   dio_cookie_manager: ^2.0.0
   cookie_jar: ^3.0.1
   # 网络检测 https://pub.flutter-io.cn/packages/connectivity
@@ -56,35 +58,35 @@ dependencies:
   localstorage: ^4.0.0+1
 
   # 获取设备信息
-  device_info_plus: ^3.2.2
+  device_info_plus: ^3.2.4
   # 获取包信息
-  package_info_plus: ^1.4.0
-  quiver: ^3.0.1+1
+  package_info_plus: ^1.4.2
+  quiver: ^3.1.0
 
   # Html Encoder/Decoder
   html_unescape: ^2.0.0
   # 解析html标签
   flutter_html: ^2.2.1
   # MD5数据处理
-  crypto: ^3.0.1
+  crypto: ^3.0.2
   #webview_flutter: ^3.0.0
 
   #判断list是否相等
   collection: ^1.15.0
-  url_launcher: ^6.0.20
+  url_launcher: ^6.1.5
 
   # Lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
-  lottie: ^1.2.2
+  lottie: ^1.4.1
   # 加载SVG图片 https://pub.flutter-io.cn/packages/flutter_svg
   flutter_svg: 0.22.0
   # Toast提示 https://pub.flutter-io.cn/packages/fluttertoast
   fluttertoast: ^8.0.9
   # https://pub.flutter-io.cn/packages/permission_handler/example
-  permission_handler: ^9.2.0
+  permission_handler: ^10.0.0
   # 图片保存本地 https://pub.flutter-io.cn/packages/image_gallery_saver
   image_gallery_saver: ^1.7.1
   # 图片选择器 https://pub.flutter-io.cn/packages/image_picker/example
-  image_picker: ^0.8.4+11
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -95,7 +97,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following pages: https://dart.dev/tools/pub/pubspec

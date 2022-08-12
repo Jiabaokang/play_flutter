@@ -49,19 +49,19 @@ class R {
 
   ///微信公众号图片
   static Map<int , String> wechatPublic = {
-    408 : 'assets/images/3.0x/wechat_public_408.jpg',
-    409 : 'assets/images/3.0x/wechat_public_409.jpg',
-    410 : 'assets/images/3.0x/wechat_public_410.jpg',
-    411 : 'assets/images/3.0x/wechat_public_411.jpg',
-    413 : 'assets/images/3.0x/wechat_public_413.jpg',
-    414 : 'assets/images/3.0x/wechat_public_414.jpg',
-    415 : 'assets/images/3.0x/wechat_public_415.jpg',
-    416 : 'assets/images/3.0x/wechat_public_416.jpg',
-    417 : 'assets/images/3.0x/wechat_public_417.jpg',
-    420 : 'assets/images/3.0x/wechat_public_420.jpg',
-    421 : 'assets/images/3.0x/wechat_public_421.jpg',
-    427 : 'assets/images/3.0x/wechat_public_427.jpg',
-    428 : 'assets/images/3.0x/wechat_public_428.jpg',
-    434 : 'assets/images/3.0x/wechat_public_434.jpg',
+    408 : 'assets/images/wechat_public_408.jpg',
+    409 : 'assets/images/wechat_public_409.jpg',
+    410 : 'assets/images/wechat_public_410.jpg',
+    411 : 'assets/images/wechat_public_411.jpg',
+    413 : 'assets/images/wechat_public_413.jpg',
+    414 : 'assets/images/wechat_public_414.jpg',
+    415 : 'assets/images/wechat_public_415.jpg',
+    416 : 'assets/images/wechat_public_416.jpg',
+    417 : 'assets/images/wechat_public_417.jpg',
+    420 : 'assets/images/wechat_public_420.jpg',
+    421 : 'assets/images/wechat_public_421.jpg',
+    427 : 'assets/images/wechat_public_427.jpg',
+    428 : 'assets/images/wechat_public_428.jpg',
+    434 : 'assets/images/wechat_public_434.jpg',
   };
 }

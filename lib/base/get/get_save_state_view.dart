@@ -50,7 +50,7 @@ class AutoDisposeState<S extends GetxController> extends State<GetSaveView>
   void initState() {
     super.initState();
     if(widget.lifecycle != null){
-      WidgetsBinding.instance?.addObserver(this);
+      WidgetsBinding.instance.addObserver(this);
     }
   }
 
@@ -58,7 +58,7 @@ class AutoDisposeState<S extends GetxController> extends State<GetSaveView>
   void dispose() {
     Get.delete<S>();
     if(widget.lifecycle != null) {
-      WidgetsBinding.instance?.removeObserver(this);
+      WidgetsBinding.instance.removeObserver(this);
     }
     super.dispose();
   }

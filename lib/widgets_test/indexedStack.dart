@@ -16,7 +16,7 @@ import 'package:play_flutter/widget/dialog/dialog_share_Infomation.dart';
 ///
 ///
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// 初始化配置
@@ -38,8 +38,7 @@ void main() async{
           // body: BaseDialogDemo(),
           //body: CommonDialogDemo()),
           // body: LoadingDialog(msgContent: "加载中")
-          body: ShareDialog(url: "https://www.baidu.com")
-      ),
+          body: ShareDialog(url: "https://www.baidu.com")),
     ),
   ));
 }
@@ -78,18 +77,19 @@ class BaseDialogDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: BaseDialog(
-      child: Column(
-        children: const [
-          Text("data0"),
-          Text("data1"),
-          Text("data2"),
-          Text("data3"),
-        ],
+      child: BaseDialog(
+        horizontal: 50,
+        shape: 40,
+        child: Column(
+          children: const [
+            Text("data0"),
+            Text("data1"),
+            Text("data2"),
+            Text("data3"),
+          ],
+        ),
       ),
-      horizontal: 50,
-      shape: 40,
-    ));
+    );
   }
 }
 

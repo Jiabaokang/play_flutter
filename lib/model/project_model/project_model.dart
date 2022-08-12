@@ -82,10 +82,10 @@ class ProjectTag {
   }
 }
 
-/// @class : ProjectDetail
-/// @date : 2021/08/23
-/// @name : jhf
-/// @description : 项目详情
+/// author : JiaBaoKang
+/// e-mail : jiabaokangsy@gmail.com
+/// date   : 2022/8/12 14:03
+/// desc   : 项目详情(首页列表项实体,广场列表项实体,问答列表项实体)
 class ProjectDetail {
   String apkLink = "";
   int audit = 0;

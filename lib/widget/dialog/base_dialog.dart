@@ -7,15 +7,15 @@ import 'package:play_flutter/widget/over_scroll_behavior.dart';
 /// desc   : 通用的dialog
 class BaseDialog extends StatefulWidget {
   ///子控件
-  Widget child;
+  final Widget child;
 
   ///圆角
-  double shape;
+  final double shape;
 
   ///左右边距
-  double horizontal;
+  final double horizontal;
 
-  BaseDialog({
+  const BaseDialog({
     Key? key,
     this.shape = 10,
     this.horizontal = 25,

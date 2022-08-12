@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:play_flutter/base/get/getx_controller_inject.dart';
 import 'package:play_flutter/widget/pull_smart_refresher.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 
 /// author : JiaBaoKang
@@ -62,5 +62,5 @@ class BaseGetPageController extends BaseGetController {
   }
 
   ///网络请求在此处进行，不用在重复进行上拉下拉的处理
-  void requestData(RefreshController refreshController, {Refresh refresh = Refresh.first}) {}
+  void requestData(RefreshController controller, {Refresh refresh = Refresh.first}) {}
 }
