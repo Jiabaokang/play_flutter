@@ -66,7 +66,7 @@ dependencies:
   # Html Encoder/Decoder
   html_unescape: ^2.0.0
   # 解析html标签
-  flutter_html: ^2.2.1
+  flutter_html: ^3.0.0-alpha.5
   # MD5数据处理
   crypto: ^3.0.2
   #webview_flutter: ^3.0.0
@@ -78,7 +78,7 @@ dependencies:
   # Lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
   lottie: ^1.4.1
   # 加载SVG图片 https://pub.flutter-io.cn/packages/flutter_svg
-  flutter_svg: 0.22.0
+  flutter_svg: ^1.1.3
   # Toast提示 https://pub.flutter-io.cn/packages/fluttertoast
   fluttertoast: ^8.0.9
   # https://pub.flutter-io.cn/packages/permission_handler/example
@@ -87,6 +87,7 @@ dependencies:
   image_gallery_saver: ^1.7.1
   # 图片选择器 https://pub.flutter-io.cn/packages/image_picker/example
   image_picker: ^0.8.5+3
+  flutter_math_fork: ^0.6.3+1
 
 dev_dependencies:
   flutter_test:
