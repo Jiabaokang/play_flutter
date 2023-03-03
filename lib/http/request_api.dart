@@ -21,8 +21,6 @@ class RequestApi{
   ///积分排行榜接口
   static const String apiRanking = 'coin/rank/page/json';
 
-
-
   ///登录接口
   static const String apiLogin = 'user/login';
   ///注册接口
