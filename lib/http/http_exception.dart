@@ -7,8 +7,6 @@ import 'package:play_flutter/utils/platform_utils.dart';
 /// date   : 2022/3/16 16:08
 /// desc   : 数据请求错误信息处理
 class HttpException {
-
-
   static const int success = 200;
   static const int API_SUCCESS = 0;
 
@@ -30,7 +28,8 @@ class HttpException {
       ///DioError返回的错误类型
       switch (dioError.type) {
         ///请求响应错误处理
-        case DioErrorType.response:{
+        case DioExceptionType.badResponse:
+          {
             dynamic error = dioError.message;
             if (error is SocketException) {
               return NetError(socketError, "网络异常，请检查你的网络！");
@@ -44,14 +43,17 @@ class HttpException {
           }
 
         ///连接超时 || 请求超时 || 响应超时
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.connectTimeout:{
+        case DioExceptionType.receiveTimeout:
+        case DioExceptionType.connectionTimeout:
+          {
             return NetError(timeoutError, '连接超时！');
           }
-        case DioErrorType.cancel:{
-          return NetError(cancelError, '取消请求');
-        }
-        default:{
+        case DioExceptionType.cancel:
+          {
+            return NetError(cancelError, '取消请求');
+          }
+        default:
+          {
             return NetError(unknownError, "位置异常");
           }
       }
@@ -59,7 +61,6 @@ class HttpException {
       return NetError(unknownError, "未知异常");
     }
   }
-
 }
 
 class NetError {

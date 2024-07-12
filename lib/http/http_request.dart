@@ -13,15 +13,6 @@ import 'package:play_flutter/utils/save/sp_util.dart';
 /// date   : 2022/3/16 16:48
 /// desc   : 网络请求
 
-///连接超时
-const int _connectTimeout = 10000;
-
-///接受超时
-const int _receiveTimeout = 10000;
-
-///发送超时
-const int _sendTimeout = 10000;
-
 /// 数据成功回调
 typedef Success<T> = Function(T data);
 
@@ -41,8 +32,7 @@ class HttpRequest {
         // 请求的Content-Type，默认值是"application/json; charset=utf-8".
         // 如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
         // 可以设置此选项为 `Headers.formUrlEncodedContentType`,  这样[Dio]就会自动编码请求体.
-        ..contentType =
-            isJson ? Headers.jsonContentType : Headers.formUrlEncodedContentType
+        ..contentType = isJson ? Headers.jsonContentType : Headers.formUrlEncodedContentType
         //验证状态
         ..validateStatus = ((status) {
           //不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
@@ -50,15 +40,17 @@ class HttpRequest {
         })
         //域名地址
         ..baseUrl = RequestApi.baseurl
-        ..sendTimeout = _sendTimeout
-        ..connectTimeout = _connectTimeout
-        ..receiveTimeout = _receiveTimeout;
+        //发送超时
+        ..sendTimeout = const Duration(milliseconds: 10000)
+        //连接超时
+        ..connectTimeout = const Duration(milliseconds: 10000)
+        //接受超时
+        ..receiveTimeout = const Duration(milliseconds: 10000);
 
       /// 实例化Dio对象
       _dio = Dio(option);
     }
-    _dio?.options.contentType =
-        isJson ? Headers.jsonContentType : Headers.formUrlEncodedContentType;
+    _dio?.options.contentType = isJson ? Headers.jsonContentType : Headers.formUrlEncodedContentType;
 
     return _dio!;
   }
@@ -82,11 +74,10 @@ class HttpRequest {
       }
       Dio _dio = createInstance(isJson);
       Response response = await _dio.request(path,
-          data: params,
-          options:
-              Options(method: _MethodValue[method], headers: _headerToken()));
+          data: params, options: Options(method: _MethodValue[method], headers: _headerToken()));
+
       ///设置成功的数据
-      if(success != null){
+      if (success != null) {
         success(response.data);
       }
     } on DioError catch (e) {
@@ -103,8 +94,7 @@ Map<String, dynamic>? _headerToken() {
   UserBean? userBean = SpUtil.getUserInfo();
   if (userBean != null) {
     Map<String, dynamic> httpHeaders = {
-      'Cookie':
-          'loginUserName=${userBean.username};loginUserPassword=${userBean.password}',
+      'Cookie': 'loginUserName=${userBean.username};loginUserPassword=${userBean.password}',
     };
     return httpHeaders;
   }

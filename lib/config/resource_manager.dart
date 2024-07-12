@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ImageHelper {
   static const String baseUrl = 'http://www.meetingplus.cn';
@@ -20,10 +19,7 @@ class ImageHelper {
   }
 
   static Widget placeHolder({required double width, required double height}) {
-    return SizedBox(
-        width: width,
-        height: height,
-        child: CupertinoActivityIndicator(radius: min(10.0, width / 3)));
+    return SizedBox(width: width, height: height, child: CupertinoActivityIndicator(radius: min(10.0, width / 3)));
   }
 
   static Widget error({required double width, required double height, required double size}) {
@@ -36,8 +32,7 @@ class ImageHelper {
         ));
   }
 
-  static String randomUrl(
-      {int width = 100, int height = 100, Object key = ''}) {
+  static String randomUrl({int width = 100, int height = 100, Object key = ''}) {
     return 'http://placeimg.com/$width/$height/${key.hashCode.toString() + key.toString()}';
   }
 }

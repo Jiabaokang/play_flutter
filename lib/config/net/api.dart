@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dio/native_imp.dart';
+import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import '../../utils/platform_utils.dart';
@@ -18,7 +18,7 @@ parseJson(String text) {
 abstract class BaseHttp extends DioForNative {
   BaseHttp() {
     /// 初始化 加入app通用处理
-    (transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
+    (transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
     //添加Header
     interceptors.add(HeaderInterceptor());
     init();
@@ -31,9 +31,8 @@ abstract class BaseHttp extends DioForNative {
 class HeaderInterceptor extends InterceptorsWrapper {
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-
-    options.connectTimeout = 1000 * 45;
-    options.receiveTimeout = 1000 * 45;
+    options.connectTimeout = const Duration(milliseconds: 1000 * 45);
+    options.receiveTimeout = const Duration(milliseconds: 1000 * 45);
 
     var appVersion = await PlatformUtils.getAppVersion();
     var version = Map()
@@ -43,7 +42,6 @@ class HeaderInterceptor extends InterceptorsWrapper {
     options.headers['version'] = version;
     options.headers['platform'] = Platform.operatingSystem;
   }
-
 }
 
 /// 子类需要重写
@@ -61,7 +59,6 @@ abstract class BaseResponseData {
     return 'BaseRespData{code: $code, message: $message, data: $data}';
   }
 }
-
 
 /// 接口的code没有返回为true的异常
 class NotSuccessException implements Exception {
@@ -84,4 +81,3 @@ class UnAuthorizedException implements Exception {
   @override
   String toString() => 'UnAuthorizedException';
 }
-

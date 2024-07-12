@@ -1,14 +1,16 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw  new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -21,33 +23,33 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+def targetSdkVersion = 34
+def minSdkVersion= 24
 
 android {
-    compileSdkVersion 33
+    namespace = "com.jbk.play_flutter"
+    compileSdk = targetSdkVersion
+    ndkVersion = flutter.ndkVersion
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+
+    println("compileSdk:" + flutter.compileSdkVersion)
+    println("ndkVersion:" + flutter.ndkVersion)
+    println("minSdk:" + flutter.minSdkVersion)
+    println("targetSdk:" + flutter.targetSdkVersion)
+    println("use targetSdkVersion:" + targetSdkVersion)
 
     defaultConfig {
-        applicationId "com.jbk.play_flutter"
-        minSdkVersion 23
-        targetSdkVersion 33
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
-        multiDexEnabled true
-        archivesBaseName = "PlayFlutter${versionName}"
+        applicationId = "com.jbk.play_flutter"
+        targetSdk = targetSdkVersion
+        minSdk = minSdkVersion
 
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
     }
 
     buildTypes {
@@ -63,5 +65,5 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 }

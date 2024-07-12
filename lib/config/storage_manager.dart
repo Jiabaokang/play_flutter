@@ -11,9 +11,8 @@ class StorageManager {
   /// 临时目录 eg: cookie
   static Directory? temporaryDirectory;
 
-
   /// 初始化必备操作 eg:user数据
-  static LocalStorage? localStorage;
+  //static LocalStorage? localStorage;
 
   /// 必备数据的初始化操作
   ///
@@ -23,7 +22,7 @@ class StorageManager {
     // sync 同步操作
     temporaryDirectory = await getTemporaryDirectory();
     sharedPreferences = await SharedPreferences.getInstance();
-    localStorage = LocalStorage('LocalStorage');
-    await localStorage?.ready;
+    //localStorage = LocalStorage('LocalStorage');
+    //await localStorage?.ready;
   }
 }
