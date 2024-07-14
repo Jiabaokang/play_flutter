@@ -75,9 +75,9 @@ class _GuessPageState extends State<GuessPage> {
           if (_isBid != null)
             Column(
               children: <Widget>[
-                if (_isBid == true) const ResultNotice(color: Colors.redAccent, text: "大了"),
+                if (_isBid == true) ResultNotice(color: Colors.redAccent, text: "大了"),
                 const Spacer(),
-                if (_isBid == false) const ResultNotice(color: Colors.blue, text: "小了")
+                if (_isBid == false) ResultNotice(color: Colors.blue, text: "小了")
               ],
             ),
           Center(
