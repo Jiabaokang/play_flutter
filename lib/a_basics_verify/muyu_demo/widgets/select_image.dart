@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:play_flutter/a_basics_verify/muyu/models/Image_option.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/Image_option.dart';
 
 class ImageOptionItem extends StatelessWidget {
   final ImageOption option;

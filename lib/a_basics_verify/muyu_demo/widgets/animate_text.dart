@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/merit_record.dart';
 
 class AnimateText extends StatefulWidget {
   final String text;
-  const AnimateText({super.key, required this.text});
+  final MeritRecord record;
+  const AnimateText({super.key, required this.text, required this.record});
 
   @override
   State<AnimateText> createState() => _FadTextState();
@@ -40,7 +42,11 @@ class _FadTextState extends State<AnimateText> with SingleTickerProviderStateMix
   @override
   void didUpdateWidget(covariant AnimateText oldWidget) {
     super.didUpdateWidget(oldWidget);
-    controller.forward(from: 0);
+
+    ///解决切换木鱼图片会显示一次功德的bug
+    if (oldWidget.record.id != widget.record.id) {
+      controller.forward(from: 0);
+    }
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:play_flutter/a_basics_verify/muyu/models/AudioOption.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/AudioOption.dart';
 
 class AudioOptionPanel extends StatelessWidget {
   final List<AudioOption> audioOptions;

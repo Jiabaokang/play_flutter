@@ -2,15 +2,17 @@ import 'dart:math';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:play_flutter/a_basics_verify/muyu/models/AudioOption.dart';
-import 'package:play_flutter/a_basics_verify/muyu/models/Image_option.dart';
-import 'package:play_flutter/a_basics_verify/muyu/widgets/animate_text.dart';
-import 'package:play_flutter/a_basics_verify/muyu/widgets/muyu_assets_image.dart';
-import 'package:play_flutter/a_basics_verify/muyu/widgets/select_audio.dart';
-import 'package:play_flutter/a_basics_verify/muyu/widgets/select_image.dart';
-
-import '../../../res/assets_res.dart';
-import '../widgets/count_panel.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/AudioOption.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/Image_option.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/models/merit_record.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/page/record_history_page.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/animate_text.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/count_panel.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/muyu_assets_image.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/select_audio.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/select_image.dart';
+import 'package:play_flutter/res/assets_res.dart';
+import 'package:uuid/uuid.dart';
 
 class MuYuPage extends StatefulWidget {
   const MuYuPage({super.key});
@@ -20,6 +22,7 @@ class MuYuPage extends StatefulWidget {
 }
 
 class _MuYuPageState extends State<MuYuPage> {
+  final Uuid uuid = const Uuid();
   AudioPool? pool;
   final _random = Random();
   int _counter = 0;
@@ -50,6 +53,9 @@ class _MuYuPageState extends State<MuYuPage> {
   ///当前选择的音频
   int _activeAudioIndex = 0;
   String get activeAudio => audioOptions[_activeAudioIndex].src;
+
+  ///功德记录
+  final List<MeritRecord> _records = [];
 
   @override
   void initState() {
@@ -89,7 +95,11 @@ class _MuYuPageState extends State<MuYuPage> {
                   image: activeImage, //使用选择木鱼的值
                   onTab: _onKnock,
                 ),
-                if (_curValue != 0) AnimateText(text: "功德:+$_curValue")
+                if (_curValue != 0)
+                  AnimateText(
+                    text: "功德:+$_curValue",
+                    record: _records.last,
+                  )
               ],
             ),
           )
@@ -105,11 +115,28 @@ class _MuYuPageState extends State<MuYuPage> {
       //_curValue = 1 + _random.nextInt(3);
       _curValue = knockValue; //使用选择的木鱼的值
       _counter += _curValue;
+
+      //添加功德记录
+      String id = uuid.v4();
+      MeritRecord record = MeritRecord(
+        id,
+        DateTime.now().millisecondsSinceEpoch,
+        _curValue,
+        activeImage,
+        audioOptions[_activeAudioIndex].name,
+      );
+      _records.add(record);
     });
   }
 
   ///查看历史记录
-  void toHistory() {}
+  void toHistory() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (cex) => RecordHistoryPage(records: _records),
+      ),
+    );
+  }
 
   ///初始化音频播放器
   void initAudioPool() async {

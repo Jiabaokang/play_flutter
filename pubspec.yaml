@@ -35,6 +35,8 @@ dependencies:
 
   # iOS图标库
   cupertino_icons: ^1.0.8
+  # https://pub-web.flutter-io.cn/packages/intl/versions
+  intl: ^0.19.0
 
   #UI相关
   oktoast: ^3.4.0
@@ -87,9 +89,13 @@ dependencies:
   image_gallery_saver: ^2.0.3
   # 图片选择器 https://pub.flutter-io.cn/packages/image_picker/example
   image_picker: ^1.1.2
+
   flutter_math_fork: any
-  # 加载短音频
+  # 加载短音频 https://pub.flutter-io.cn/packages/flame_audio
   flame_audio: ^2.10.0
+  # uuid 生成唯一id
+  uuid: ^4.4.0
+
 
 dev_dependencies:
   flutter_test:

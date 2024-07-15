@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:play_flutter/a_basics_verify/muyu/page/muyu_page.dart';
+import 'package:play_flutter/a_basics_verify/muyu_demo/page/muyu_page.dart';
 
 void main() => runApp(MyApp());
 
