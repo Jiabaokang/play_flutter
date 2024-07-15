@@ -2,88 +2,119 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:play_flutter/a_basics_verify/canvas_demo/models/line.dart';
 import 'package:play_flutter/a_basics_verify/canvas_demo/widgets/paper_appbar.dart';
 
 class PaperPage extends StatefulWidget {
   const PaperPage({super.key});
 
   @override
-  State<PaperPage> createState() => _PaperPageState();
+  State<PaperPage> createState() => _PaperState();
 }
 
-class _PaperPageState extends State<PaperPage> {
+class _PaperState extends State<PaperPage> {
+  ///线的列表
+  List<Line> _lines = [];
+
+  ///支持的颜色
+  final List<Color> supportColors = [
+    Colors.black,
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.indigo,
+    Colors.purple,
+  ];
+
+  ///支持的线头宽度
+  final List<double> supportStrokeWidths = [1, 2, 4, 6, 8, 10];
+
+  ///当前激活的颜色下标
+  int _activeColorIndex = 0;
+
+  ///当前激活的线头宽度下标
+  int _activeStrokeWidthIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PaperAppBar(
         onClear: _onClear,
       ),
-      body: CustomPaint(
-        painter: PaperPainter(),
-
-        ///希望画布的尺寸填充剩余空间，将 child 指定为 ConstrainedBox ，并通过 BoxConstraints.expand() 的约束
-        child: ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
+      body: GestureDetector(
+        onPanStart: _onPanStart,
+        onPanUpdate: _onPanUpdate,
+        child: CustomPaint(
+          painter: PaperPainter(lines: _lines),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints.expand(),
+          ),
         ),
       ),
     );
   }
 
-  void _onClear() {}
-}
-
-class PaperPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    paintBasicsUse(canvas);
+  void _showClearDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('title'),
+          content: Text('dialogBody'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('buttonText'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
-  /// 画笔的基本用法
-  void paintBasicsUse(Canvas canvas) {
-    Paint paint = Paint()
-      ..strokeWidth = 6
-      ..color = Colors.blue
-      ..strokeCap = StrokeCap.round;
+  void _onClear() {}
 
-    ///画圆
-    canvas.drawCircle(const Offset(100, 100), 50, paint);
+  ///手指按下后回调
+  void _onPanStart(DragStartDetails details) {
+    // 记录手指按下的位置做标点
+    _lines.add(Line(points: [details.localPosition]));
+  }
 
-    ///空心圆
-    paint.style = PaintingStyle.stroke;
-    canvas.drawCircle(const Offset(250, 100), 50, paint);
+  ///手指拖动回调
+  void _onPanUpdate(DragUpdateDetails details) {
+    _lines.last.points.add(details.localPosition);
+    //刷新页面
+    setState(() {});
+  }
+}
 
-    ///画矩形
-    Rect rect = Rect.fromCenter(center: const Offset(100, 200), width: 100, height: 80);
-    canvas.drawRect(rect, paint);
+///画布
+class PaperPainter extends CustomPainter {
+  final List<Line> lines;
+  late Paint _paint;
+  PaperPainter({required this.lines}) {
+    _paint = Paint()
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke;
+  }
 
-    ///画圆角矩形
-    //RRect rRect = RRect.fromRectAndRadius(rect, const Radius.circular(8));
-    //canvas.drawRRect(rRect, paint);
-    RRect rRect = RRect.fromRectXY(rect.translate(150, 0), 8, 8);
-    canvas.drawRRect(rRect, paint);
+  ///开始绘制
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (var line in lines) {
+      _drawLine(canvas, line);
+    }
+  }
 
-    ///drawOval 绘制椭圆：两个入参分别是矩形 Rect、画笔 Paint。
-    Rect ovalRect = Rect.fromCenter(center: const Offset(100, 300), width: 100, height: 80);
-    canvas.drawOval(ovalRect, paint);
-
-    /// drawArc 绘制圆弧：五个入参分别是矩形 RRect、起始弧度 double、扫描弧度 double、是否闭合 bool、画笔 Paint。
-    Rect arcRect = ovalRect.translate(150, 0);
-    canvas.drawArc(arcRect, 0, pi * 1.25, true, paint);
-
-    List<Offset> points = const [
-      Offset(100, 400),
-      Offset(100, 500),
-      Offset(150, 500),
-      Offset(200, 400),
-    ];
-
-    ///画点
-    //canvas.drawPoints(PointMode.points, points, paint);
-    ///画线
-    canvas.drawPoints(PointMode.lines, points, paint);
-
-    ///画多边形
-    canvas.drawPoints(PointMode.polygon, points, paint);
+  ///绘制线
+  void _drawLine(Canvas canvas, Line line) {
+    _paint.color = line.color;
+    _paint.strokeWidth = line.strokeWidth;
+    canvas.drawPoints(PointMode.polygon, line.points, _paint);
   }
 
   @override
