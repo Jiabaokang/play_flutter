@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:play_flutter/res_custom/colors.dart';
 
-import 'colors.dart';
 
 /// @class : Styles
 /// @name : jhf

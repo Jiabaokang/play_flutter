@@ -1,4 +1,4 @@
-import 'package:play_flutter/res/strings.dart';
+import 'package:play_flutter/res_custom/strings.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -39,5 +39,4 @@ final languageList = [
   Language('繁體中文(香港)', 'zh', 'HK'),
   Language('繁體中文(台灣)', 'zh', 'TW'),
   Language('English', 'zh', 'US'),
-
 ];

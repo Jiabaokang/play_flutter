@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/ask_page/ask_view.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/child_first_page/home_first_view.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/square_page/square_view.dart';
-import 'package:play_flutter/res/colors.dart';
 import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/strings.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/colors.dart';
+import 'package:play_flutter/res_custom/strings.dart';
+import 'package:play_flutter/res_custom/style.dart';
 import 'package:play_flutter/widget/ripple_widget.dart';
 
 /// author : JiaBaoKang
@@ -21,8 +21,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController tabController;
 
   @override
@@ -58,12 +57,12 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
                 const Expanded(child: SizedBox()),
+
                 ///搜索按钮
-                Ripple(child: Padding(padding: const EdgeInsets.all(5),
-                  child: SvgPicture.asset(
-                    R.assetsImagesSearch,
-                    color: Colors.black87,
-                    width: 30),
+                Ripple(
+                    child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: SvgPicture.asset(R.assetsImagesSearch, color: Colors.black87, width: 30),
                 )),
                 const SizedBox(width: 10)
               ],

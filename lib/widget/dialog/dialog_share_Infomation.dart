@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:play_flutter/base/get/get_extension_method.dart';
-import 'package:play_flutter/res/button_style.dart';
-import 'package:play_flutter/res/colors.dart';
+import 'package:play_flutter/res_custom/button_style.dart';
 import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/strings.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/colors.dart';
+import 'package:play_flutter/res_custom/strings.dart';
+import 'package:play_flutter/res_custom/style.dart';
 import 'package:play_flutter/utils/file/cache_utils.dart';
 import 'package:play_flutter/utils/navigate_utils.dart';
 import 'package:play_flutter/widget/dialog/base_dialog.dart';
@@ -48,10 +48,7 @@ class ShareDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ///浏览器图标
-            _buildShareIcon(
-                Icons.public_sharp,
-                ColorStyle.color_24CF5F,
-                StringStyles.openBrowser.tr,
+            _buildShareIcon(Icons.public_sharp, ColorStyle.color_24CF5F, StringStyles.openBrowser.tr,
                 () => Navigate.launchInBrowser(url)),
 
             ///保存到本地的图标
@@ -64,8 +61,7 @@ class ShareDialog extends StatelessWidget {
                       Permission.storage.request().then((value) async {
                         ///存储权限申请成功后，保存图片到本机中
                         if (value.isGranted) {
-                          CacheUtils.saveAssetsGallery(
-                              assets: R.assetsImagesShareQRCode);
+                          CacheUtils.saveAssetsGallery(assets: R.assetsImagesShareQRCode);
                         } else {
                           ///打开设置界面
                           openAppSettings();
@@ -85,8 +81,7 @@ class ShareDialog extends StatelessWidget {
           child: TextButton(
             style: ButtonStyles.getNoShapeStyle(),
             onPressed: () => Get.dismiss(),
-            child: Text(StringStyles.actionCancel.tr,
-                style: Styles.style_black_14),
+            child: Text(StringStyles.actionCancel.tr, style: Styles.style_black_14),
           ),
         )
       ],
@@ -94,8 +89,7 @@ class ShareDialog extends StatelessWidget {
   }
 
   ///返回手势检测器
-  GestureDetector _buildShareIcon(
-      IconData icon, Color color, String text, VoidCallback onTab) {
+  GestureDetector _buildShareIcon(IconData icon, Color color, String text, VoidCallback onTab) {
     return GestureDetector(
       onTap: onTab,
       child: Column(

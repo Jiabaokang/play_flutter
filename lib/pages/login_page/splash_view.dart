@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import 'package:get/get.dart';
 import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/strings.dart';
+import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/routes/app_routes.dart';
 
 /// author : JiaBaoKang
@@ -26,11 +26,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _logoController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1500));
+    _logoController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
 
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(curve: Curves.easeInOutBack, parent: _logoController));
+    _animation =
+        Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(curve: Curves.easeInOutBack, parent: _logoController));
 
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -41,8 +40,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     });
     _logoController.forward();
 
-    _countdownController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    _countdownController = AnimationController(vsync: this, duration: const Duration(seconds: 4));
     _countdownController.forward();
     super.initState();
   }
@@ -62,9 +60,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         onWillPop: () => Future.value(false),
         child: Stack(fit: StackFit.expand, children: <Widget>[
           Image.asset(
-              Theme.of(context).brightness == Brightness.light
-                  ? R.assetsImagesSplashBg
-                  : R.assetsImagesSplashBgDark,
+              Theme.of(context).brightness == Brightness.light ? R.assetsImagesSplashBg : R.assetsImagesSplashBgDark,
               fit: BoxFit.fill),
           AnimatedFlutterLogo(
             animation: _animation,
@@ -88,8 +84,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   nextPage(context);
                 },
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   margin: const EdgeInsets.only(right: 20, bottom: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
@@ -97,8 +92,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   ),
                   child: AnimatedCountdown(
                     context: context,
-                    animation: StepTween(begin: 3, end: 0)
-                        .animate(_countdownController),
+                    animation: StepTween(begin: 3, end: 0).animate(_countdownController),
                   ),
                 ),
               ),
@@ -113,8 +107,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 class AnimatedCountdown extends AnimatedWidget {
   final Animation<int> animation;
 
-  AnimatedCountdown({key, required this.animation, context})
-      : super(key: key, listenable: animation) {
+  AnimatedCountdown({key, required this.animation, context}) : super(key: key, listenable: animation) {
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         nextPage(context);

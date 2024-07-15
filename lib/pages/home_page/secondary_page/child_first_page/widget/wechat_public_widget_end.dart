@@ -1,7 +1,6 @@
-
 import 'package:flutter/cupertino.dart';
-import 'package:play_flutter/res/shadow_style.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/shadow_style.dart';
+import 'package:play_flutter/res_custom/style.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -20,16 +19,13 @@ class WechatPublicEndWidget extends StatefulWidget {
   ///是否显示按钮数据
   bool show = false;
 
-  WechatPublicEndWidget(
-      {Key? key, this.icon, this.text = '', this.show = false, this.onTap})
-      : super(key: key);
+  WechatPublicEndWidget({Key? key, this.icon, this.text = '', this.show = false, this.onTap}) : super(key: key);
 
   @override
   State<WechatPublicEndWidget> createState() => _WechatPublicEndWidgetState();
 }
 
-class _WechatPublicEndWidgetState extends State<WechatPublicEndWidget>
-    with TickerProviderStateMixin {
+class _WechatPublicEndWidgetState extends State<WechatPublicEndWidget> with TickerProviderStateMixin {
   AnimationController? transferController;
   Animation<Offset>? transferAnimation;
 
@@ -41,32 +37,26 @@ class _WechatPublicEndWidgetState extends State<WechatPublicEndWidget>
 
   ///初始化动画控制器
   initAnimation(bool isFirst, {int milliseconds = 300}) {
-    transferController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: milliseconds));
-    transferAnimation = Tween(
-            begin:  Offset.zero,
-            end:  const Offset(0.7, 0))
-        .animate(transferController!);
+    transferController = AnimationController(vsync: this, duration: Duration(milliseconds: milliseconds));
+    transferAnimation = Tween(begin: Offset.zero, end: const Offset(0.7, 0)).animate(transferController!);
   }
 
   @override
   Widget build(BuildContext context) {
-    if(widget.show){
+    if (widget.show) {
       transferController?.reverse();
-    }else{
+    } else {
       transferController?.forward();
     }
-    return  SlideTransition(
-        position: transferAnimation!,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: widget.onTap,
-          child: Container(
+    return SlideTransition(
+      position: transferAnimation!,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: widget.onTap,
+        child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
           decoration: ShadowStyle.white12CircleBorder(
-              const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20)),
+              const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
               radius: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,

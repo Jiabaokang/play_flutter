@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-
-import 'colors.dart';
-
+import 'package:play_flutter/res_custom/colors.dart';
 
 
 /// @class : ButtonStyles

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:play_flutter/model/project_model/project_model.dart';
 import 'package:play_flutter/pages/user_page/page/head_circle_widget.dart';
-import 'package:play_flutter/res/colors.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/colors.dart';
+import 'package:play_flutter/res_custom/style.dart';
 import 'package:play_flutter/utils/web_util.dart';
 
 /// author : JiaBaoKang
@@ -31,10 +31,7 @@ class AskListItem extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         width: double.infinity,
         decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-                bottom:
-                    BorderSide(width: 0.5, color: ColorStyle.color_EFF1F8))),
+            color: Colors.white, border: Border(bottom: BorderSide(width: 0.5, color: ColorStyle.color_EFF1F8))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

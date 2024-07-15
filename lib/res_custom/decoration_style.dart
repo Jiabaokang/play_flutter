@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:play_flutter/res_custom/colors.dart';
 
-import 'colors.dart';
+
 
 /// @class : DecorationStyle
 /// @date : 2021/9/6

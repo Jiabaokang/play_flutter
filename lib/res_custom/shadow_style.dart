@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:play_flutter/res_custom/colors.dart';
 
-import 'colors.dart';
 
 /// @class : ShadowStyle
 /// @date : 2021/08/23

@@ -20,7 +20,7 @@ class CountPanel extends StatelessWidget {
         Center(
           child: Text(
             "功德数:$count",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         Positioned(

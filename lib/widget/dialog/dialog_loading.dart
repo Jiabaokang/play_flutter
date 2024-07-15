@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/strings.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/strings.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -38,8 +37,7 @@ class LoadingDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
-                  child: Lottie.asset(R.assetsLottieLoading,
-                      width: 60.0, animate: true),
+                  child: Lottie.asset(R.assetsLottieLoading, width: 60.0, animate: true),
                 ),
                 const SizedBox(
                   height: 12,

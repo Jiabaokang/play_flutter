@@ -1,15 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/child_first_page/home_first_logic.dart';
-import 'package:play_flutter/res/decoration_style.dart';
-import 'package:play_flutter/res/strings.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/decoration_style.dart';
+import 'package:play_flutter/res_custom/strings.dart';
+import 'package:play_flutter/res_custom/style.dart';
 
 import 'wechat_public_item.dart';
 import 'wechat_public_widget_end.dart';
-
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -48,8 +46,7 @@ class WechatPublicWidget extends StatefulWidget {
   State<WechatPublicWidget> createState() => _WechatPublicWidgetState();
 }
 
-class _WechatPublicWidgetState extends State<WechatPublicWidget>
-    with TickerProviderStateMixin {
+class _WechatPublicWidgetState extends State<WechatPublicWidget> with TickerProviderStateMixin {
   AnimationController? sizeController;
   Animation<double>? sizeAnimation;
 
@@ -61,11 +58,9 @@ class _WechatPublicWidgetState extends State<WechatPublicWidget>
 
   ///初始化动画控制器
   initAnimation(bool isFirst, {int milliseconds = 1500}) {
-    sizeController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: milliseconds));
+    sizeController = AnimationController(vsync: this, duration: Duration(milliseconds: milliseconds));
     sizeAnimation = Tween(begin: isFirst ? 0.0 : 1.0, end: isFirst ? 1.0 : 0.0)
-        .animate(
-            CurvedAnimation(parent: sizeController!, curve: Curves.easeOut));
+        .animate(CurvedAnimation(parent: sizeController!, curve: Curves.easeOut));
   }
 
   @override
@@ -91,20 +86,16 @@ class _WechatPublicWidgetState extends State<WechatPublicWidget>
                     Box.vBox10,
                     Container(
                       margin: const EdgeInsets.only(left: 10),
-                      child: Text(StringStyles.tabWechatPublic.tr,
-                          style: Styles.style_B8C0D4_14),
+                      child: Text(StringStyles.tabWechatPublic.tr, style: Styles.style_B8C0D4_14),
                     ),
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.zero,
                         itemCount: widget.wechatPublic.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                         itemBuilder: (BuildContext context, int index) {
-                          return WechatPublicItem(
-                              item: widget.wechatPublic[index]);
+                          return WechatPublicItem(item: widget.wechatPublic[index]);
                         })
                   ],
                 )),
@@ -128,6 +119,7 @@ class _WechatPublicWidgetState extends State<WechatPublicWidget>
                         initAnimation(false, milliseconds: 1000);
                         sizeController?.forward();
                         Get.find<HomeFirstLogic>().update();
+
                         ///动画监听
                         sizeAnimation?.addStatusListener((state) {
                           if (state == AnimationStatus.completed) {

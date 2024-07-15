@@ -116,16 +116,12 @@ flutter:
       fonts:
         - asset: assets/fonts/kuaile.ttf
   assets:
-    - CHANGELOG.md
     - assets/animations/
+    - assets/audio/
+    - assets/basics_learn/images/
     - assets/images/
     - assets/lottie/
     - assets/svg/
-    - assets/basics_learn/images/muyu.png
-    - assets/basics_learn/images/muyu2.png
-    - assets/basics_learn/audio/muyu_1.mp3
-    - assets/basics_learn/audio/muyu_2.mp3
-    - assets/basics_learn/audio/muyu_3.mp3
 
 #flutter_intl:
 #  enabled: true

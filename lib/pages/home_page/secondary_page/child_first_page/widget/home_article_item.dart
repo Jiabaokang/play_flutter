@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:play_flutter/model/project_model/project_model.dart';
-import 'package:play_flutter/res/decoration_style.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/decoration_style.dart';
+import 'package:play_flutter/res_custom/style.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -40,15 +40,13 @@ class FirstArticleItem extends StatelessWidget {
                   visible: index <= 2,
                   child: Container(
                     margin: const EdgeInsets.only(top: 4),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                     decoration: DecorationStyle.customize(Colors.redAccent, 3),
                     child: const Text("荐", style: Styles.style_white_10),
                   ))
             ],
           ),
-          Visibility(
-              visible: item.desc.isNotEmpty, child: Html(data: item.desc)),
+          Visibility(visible: item.desc.isNotEmpty, child: Html(data: item.desc)),
           Box.vBox10,
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -58,10 +56,9 @@ class FirstArticleItem extends StatelessWidget {
                 style: Styles.style_FE8C28_11,
               ),
               Box.hBox10,
-              const Text("|",style: Styles.style_9F9EA6_11),
+              const Text("|", style: Styles.style_9F9EA6_11),
               Box.hBox10,
-              Text(item.shareUser.isEmpty?item.author:item.shareUser,
-              style: Styles.style_9F9EA6_11),
+              Text(item.shareUser.isEmpty ? item.author : item.shareUser, style: Styles.style_9F9EA6_11),
               Box.hBox10,
               Text(item.niceDate, style: Styles.style_9F9EA6_11),
             ],

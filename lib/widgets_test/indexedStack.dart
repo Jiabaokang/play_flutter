@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:play_flutter/config/Injection_init.dart';
-import 'package:play_flutter/res/strings.dart';
+import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/utils/locale_util.dart';
 import 'package:play_flutter/widget/dialog/base_dialog.dart';
 import 'package:play_flutter/widget/dialog/dialog_common_style.dart';
@@ -57,9 +57,7 @@ class CommonDialogDemo extends StatelessWidget {
       backText: "取消",
       nextText: "确定",
       backTab: () {
-        showToast("点击返回按钮",
-            textPadding: const EdgeInsets.all(12),
-            position: ToastPosition.bottom);
+        showToast("点击返回按钮", textPadding: const EdgeInsets.all(12), position: ToastPosition.bottom);
       },
       nextTab: () {
         showToast("点击确定按钮", textPadding: const EdgeInsets.all(20));

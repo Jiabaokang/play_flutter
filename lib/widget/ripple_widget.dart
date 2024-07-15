@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:play_flutter/res/colors.dart';
+import 'package:play_flutter/res_custom/colors.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:play_flutter/base/get/get_extension_method.dart';
-import 'package:play_flutter/res/button_style.dart';
-import 'package:play_flutter/res/colors.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/button_style.dart';
+import 'package:play_flutter/res_custom/colors.dart';
+import 'package:play_flutter/res_custom/style.dart';
 import 'package:play_flutter/widget/over_scroll_behavior.dart';
 
 /// author : JiaBaoKang
@@ -50,9 +50,7 @@ class CommonDialog extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 child: Container(
                   decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                      color: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,8 +66,7 @@ class CommonDialog extends StatelessWidget {
 
                       ///内容
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                         child: Text(
                           content,
                           style: Styles.style_6A6969_16,
@@ -87,13 +84,13 @@ class CommonDialog extends StatelessWidget {
                           children: [
                             _buildTextButton(backTab, backText, backVisible),
                             Visibility(
-                                visible: backVisible && nextVisible,
-                                  child: const VerticalDivider(
-                                    width: 0.5,
-                                    thickness:1,
-                                    color: ColorStyle.colorShadow,
-                                  ),
-                                ),
+                              visible: backVisible && nextVisible,
+                              child: const VerticalDivider(
+                                width: 0.5,
+                                thickness: 1,
+                                color: ColorStyle.colorShadow,
+                              ),
+                            ),
                             _buildTextButton(nextTab, nextText, nextVisible),
                           ],
                         ),
@@ -124,9 +121,7 @@ class CommonDialog extends StatelessWidget {
               }
             },
             child: Container(
-                alignment: Alignment.center,
-                height: 60,
-                child: Text(buttonText, style: Styles.style_black_16)),
+                alignment: Alignment.center, height: 60, child: Text(buttonText, style: Styles.style_black_16)),
           ),
         ));
   }

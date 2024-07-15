@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../res/assets_res.dart';
-
 class MuyuAssetsImage extends StatelessWidget {
   final String image;
   final VoidCallback onTab;

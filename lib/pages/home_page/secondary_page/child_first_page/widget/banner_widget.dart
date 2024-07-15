@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:play_flutter/model/home_model/banner_bean.dart';
-import 'package:play_flutter/res/colors.dart';
+import 'package:play_flutter/res_custom/colors.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
@@ -94,9 +94,7 @@ class _BannerState extends State<BannerWidget> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: itemBean.isAssets
-                      ? Container(
-                          color: ColorStyle.color_FBE240,
-                          child: Image.asset(itemBean.imagePath))
+                      ? Container(color: ColorStyle.color_FBE240, child: Image.asset(itemBean.imagePath))
                       : Image.network(itemBean.imagePath, fit: BoxFit.fill),
                 ),
               ),
@@ -121,9 +119,7 @@ class _BannerState extends State<BannerWidget> {
                     child: Container(
                         width: 7,
                         height: 7,
-                        color: e == widget.bannerList[_curIndex % length]
-                            ? Colors.white
-                            : Colors.grey),
+                        color: e == widget.bannerList[_curIndex % length] ? Colors.white : Colors.grey),
                   ),
                 ))
             .toList(),

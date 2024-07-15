@@ -3,15 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
 import 'package:play_flutter/pages/user_page/page/head_circle_widget.dart';
 import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/shadow_style.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res_custom/shadow_style.dart';
+import 'package:play_flutter/res_custom/style.dart';
 
 /// author : JiaBaoKang
 /// e-mail : jiabaokangsy@gmail.com
 /// date   : 2022/8/10 16:42
 /// desc   : 首页 微信公众号Item
 class WechatPublicItem extends StatelessWidget {
-
   final WechatPublic item;
 
   const WechatPublicItem({Key? key, required this.item}) : super(key: key);

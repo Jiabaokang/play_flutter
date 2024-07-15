@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:play_flutter/base/get/controller/base_page_controller.dart';
-import 'package:play_flutter/res/r.dart';
-import 'package:play_flutter/res/strings.dart';
-import 'package:play_flutter/res/style.dart';
+import 'package:play_flutter/res/assets_res.dart';
+import 'package:play_flutter/res_custom/strings.dart';
+import 'package:play_flutter/res_custom/style.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'over_scroll_behavior.dart';
 
@@ -27,8 +27,7 @@ enum Refresh {
 /// desc   : 上拉刷新、下拉加载、空白页加载动画
 /// 通过在基类BaseGetController中维护上拉刷新、下拉加载、控制器等等状态
 /// 不需要暴露给使用者，当然，此方法只能使用Getx框架有效
-class RefreshWidget<Controller extends BaseGetPageController>
-    extends StatefulWidget {
+class RefreshWidget<Controller extends BaseGetPageController> extends StatefulWidget {
   final String? tag = null;
 
   ///获取BaseGetController子类对象，在GetX中，任何BaseGetController都可以通过此方法获取
@@ -42,16 +41,16 @@ class RefreshWidget<Controller extends BaseGetPageController>
   bool enablePullDown = false;
 
   ///下拉刷新的回调
-   VoidCallback? onRefresh;
+  VoidCallback? onRefresh;
 
   ///上拉刷新的回调
-   VoidCallback? onLoadMore;
+  VoidCallback? onLoadMore;
 
   ///子类，必须是ListView
-   Widget child;
+  Widget child;
 
   ///构造方法传参
-   RefreshWidget({
+  RefreshWidget({
     Key? key,
     this.enablePullUp = true,
     this.enablePullDown = true,
@@ -65,8 +64,7 @@ class RefreshWidget<Controller extends BaseGetPageController>
 }
 
 ///混入AutomaticKeepAliveClientMixin，避免界面刷新后状态丢失
-class _RefreshWidgetState extends State<RefreshWidget>
-    with AutomaticKeepAliveClientMixin {
+class _RefreshWidgetState extends State<RefreshWidget> with AutomaticKeepAliveClientMixin {
   ///下拉刷新和上拉加载更多的控制制器，内部维护[RefreshController]
   RefreshController controller = RefreshController(initialRefresh: false);
 
@@ -99,10 +97,8 @@ class _RefreshWidgetState extends State<RefreshWidget>
                     controller: controller,
                     enablePullUp: widget.enablePullUp,
                     enablePullDown: widget.enablePullDown,
-                    onRefresh: () =>
-                        widget.getController.onLoadRefresh(controller),
-                    onLoading: () =>
-                        widget.getController.onLoadMore(controller),
+                    onRefresh: () => widget.getController.onLoadRefresh(controller),
+                    onLoading: () => widget.getController.onLoadMore(controller),
                     header: _getBuildCustomHeader(),
                     footer: _getBuildCustomFooter(),
 
@@ -118,8 +114,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
                 child: SizedBox(
                   width: 200,
                   height: 200,
-                  child: Lottie.asset(R.assetsLottiePageLoading,
-                      width: 200, height: 200, animate: true),
+                  child: Lottie.asset(AssetsRes.PAGE_LOADING_ANIM, width: 200, height: 200, animate: true),
                 ),
               )),
 
@@ -129,8 +124,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Lottie.asset(R.assetsLottieRefreshEmpty,
-                        width: 200, animate: true, repeat: false),
+                    Lottie.asset(AssetsRes.REFRESH_EMPTY_PAGE, width: 200, animate: true, repeat: false),
                     Text(
                       StringStyles.refreshEmpty.tr,
                       style: Styles.style_B8C0D4_13,
@@ -142,8 +136,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
           ///加载数据失败的界面
           Obx(() => Visibility(
                 visible: widget.getController.loadStatus.value == 3,
-                child: Lottie.asset(R.assetsLottiePageLoading,
-                    width: 200, height: 200, animate: true),
+                child: Lottie.asset(AssetsRes.PAGE_LOADING_ANIM, width: 200, height: 200, animate: true),
               )),
         ],
       ),
@@ -151,8 +144,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
   }
 
   ///自定义下拉刷新的头部View
-  CustomHeader _getBuildCustomHeader() =>
-      CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {
+  CustomHeader _getBuildCustomHeader() => CustomHeader(builder: (BuildContext context, RefreshStatus? mode) {
         Widget header;
         if (mode == RefreshStatus.idle) {
           ///下拉时显示
@@ -162,8 +154,7 @@ class _RefreshWidgetState extends State<RefreshWidget>
           );
         } else if (mode == RefreshStatus.refreshing) {
           ///加载中
-          header = Lottie.asset(R.assetsLottieRefreshHeader,
-              width: 100, animate: true);
+          header = Lottie.asset(AssetsRes.REFRESH_HEAD_LOADING, width: 100, animate: true);
         } else if (mode == RefreshStatus.failed) {
           ///加载失败
           header = Text(
@@ -190,16 +181,14 @@ class _RefreshWidgetState extends State<RefreshWidget>
       });
 
   ///自定义上拉加载的底部View
-  CustomFooter _getBuildCustomFooter() =>
-      CustomFooter(builder: (BuildContext context, LoadStatus? mode) {
+  CustomFooter _getBuildCustomFooter() => CustomFooter(builder: (BuildContext context, LoadStatus? mode) {
         Widget footer;
         if (mode == LoadStatus.idle) {
           ///下拉提示
           footer = const Text("pull up load");
         } else if (mode == LoadStatus.loading) {
           ///加载中
-          footer = Lottie.asset(R.assetsLottieRefreshFooter,
-              width: 200, animate: true);
+          footer = Lottie.asset(AssetsRes.REFRESH_FOOTER, width: 200, animate: true);
         } else if (mode == LoadStatus.failed) {
           ///加载失败
           footer = Text(
