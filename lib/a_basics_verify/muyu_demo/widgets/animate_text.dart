@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:play_flutter/a_basics_verify/muyu_demo/models/merit_record.dart';
 
 class AnimateText extends StatefulWidget {
-  final String text;
   final MeritRecord record;
-  const AnimateText({super.key, required this.text, required this.record});
+  const AnimateText({super.key, required this.record});
 
   @override
   State<AnimateText> createState() => _FadTextState();
@@ -57,10 +56,7 @@ class _FadTextState extends State<AnimateText> with SingleTickerProviderStateMix
         position: position,
         child: FadeTransition(
           opacity: opacity,
-          child: Text(
-            widget.text,
-            style: const TextStyle(fontSize: 18),
-          ),
+          child: Text('功德+${widget.record.value}', style: const TextStyle(fontSize: 18)),
         ),
       ),
     );

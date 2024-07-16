@@ -7,4 +7,14 @@ class MeritRecord {
   final String audio;
 
   MeritRecord(this.id, this.timestamp, this.value, this.image, this.audio);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'timestamp': timestamp,
+      'value': value,
+      'image': image,
+      'audio': audio,
+    };
+  }
 }

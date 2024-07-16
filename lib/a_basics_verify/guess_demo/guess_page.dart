@@ -3,11 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:play_flutter/a_basics_verify/guess_demo/guess_app_bar.dart';
 import 'package:play_flutter/a_basics_verify/guess_demo/result_notice.dart';
+import 'package:play_flutter/a_basics_verify/storage/sp_storage.dart';
 
 class GuessPage extends StatefulWidget {
-  GuessPage({super.key, required this.title});
-
-  final String title;
+  const GuessPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -15,7 +14,7 @@ class GuessPage extends StatefulWidget {
   }
 }
 
-class _GuessPageState extends State<GuessPage> {
+class _GuessPageState extends State<GuessPage> with AutomaticKeepAliveClientMixin {
   int _value = 0;
 
   ///是否正在猜测中
@@ -53,6 +52,9 @@ class _GuessPageState extends State<GuessPage> {
     setState(() {
       _isGuessing = true;
       _value = random.nextInt(50);
+
+      ///保存配置信息
+      SpStorage.instance.saveGuessConfig(guessing: _isGuessing, value: _value);
     });
   }
 
@@ -60,6 +62,12 @@ class _GuessPageState extends State<GuessPage> {
   void dispose() {
     _guessController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    initConfig();
+    super.initState();
   }
 
   @override
@@ -95,7 +103,7 @@ class _GuessPageState extends State<GuessPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.generating_tokens_outlined,
           color: Colors.white,
         ),
@@ -104,4 +112,14 @@ class _GuessPageState extends State<GuessPage> {
       ),
     );
   }
+
+  void initConfig() async {
+    Map<String, dynamic> config = await SpStorage.instance.readGuessConfig();
+    _isGuessing = config['guessing'] ?? false;
+    _value = config['value'] ?? 0;
+    setState(() {});
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

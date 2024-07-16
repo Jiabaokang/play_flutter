@@ -11,6 +11,8 @@ import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/count_panel.dart'
 import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/muyu_assets_image.dart';
 import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/select_audio.dart';
 import 'package:play_flutter/a_basics_verify/muyu_demo/widgets/select_image.dart';
+import 'package:play_flutter/a_basics_verify/storage/db_storage/db_storage.dart';
+import 'package:play_flutter/a_basics_verify/storage/sp_storage.dart';
 import 'package:play_flutter/res/assets_res.dart';
 import 'package:uuid/uuid.dart';
 
@@ -21,12 +23,12 @@ class MuYuPage extends StatefulWidget {
   State<MuYuPage> createState() => _MuYuPageState();
 }
 
-class _MuYuPageState extends State<MuYuPage> {
+class _MuYuPageState extends State<MuYuPage> with AutomaticKeepAliveClientMixin {
   final Uuid uuid = const Uuid();
   AudioPool? pool;
   final _random = Random();
   int _counter = 0;
-  int _curValue = 0;
+  MeritRecord? _curRecord;
 
   final List<ImageOption> imageOptions = [
     const ImageOption("基础版", AssetsRes.MUYU, 1, 3),
@@ -55,11 +57,12 @@ class _MuYuPageState extends State<MuYuPage> {
   String get activeAudio => audioOptions[_activeAudioIndex].src;
 
   ///功德记录
-  final List<MeritRecord> _records = [];
+  List<MeritRecord> _records = [];
 
   @override
   void initState() {
     initAudioPool();
+    initConfig();
     super.initState();
   }
 
@@ -95,11 +98,7 @@ class _MuYuPageState extends State<MuYuPage> {
                   image: activeImage, //使用选择木鱼的值
                   onTab: _onKnock,
                 ),
-                if (_curValue != 0)
-                  AnimateText(
-                    text: "功德:+$_curValue",
-                    record: _records.last,
-                  )
+                if (_curRecord != null) AnimateText(record: _curRecord!)
               ],
             ),
           )
@@ -112,20 +111,24 @@ class _MuYuPageState extends State<MuYuPage> {
   void _onKnock() {
     pool?.start();
     setState(() {
-      //_curValue = 1 + _random.nextInt(3);
-      _curValue = knockValue; //使用选择的木鱼的值
-      _counter += _curValue;
-
       //添加功德记录
       String id = uuid.v4();
-      MeritRecord record = MeritRecord(
+      _curRecord = MeritRecord(
         id,
         DateTime.now().millisecondsSinceEpoch,
-        _curValue,
+        knockValue,
         activeImage,
         audioOptions[_activeAudioIndex].name,
       );
-      _records.add(record);
+
+      //统计功德值
+      _counter += _curRecord!.value;
+      //保存配置到本地
+      saveConfig();
+      //保存到数据库
+      DbStorage.instance.meritRecordDao.insert(_curRecord!);
+      //添加到记录列表
+      _records.add(_curRecord!);
     });
   }
 
@@ -162,6 +165,8 @@ class _MuYuPageState extends State<MuYuPage> {
     if (index == _activeAudioIndex) return;
     _activeAudioIndex = index;
     pool = await FlameAudio.createPool(activeAudio, maxPlayers: 1);
+    //保存配置到本地
+    saveConfig();
   }
 
   ///选择图片的回调
@@ -174,6 +179,16 @@ class _MuYuPageState extends State<MuYuPage> {
     setState(() {
       _activeImageIndex = index;
     });
+    //保存配置到本地
+    saveConfig();
+  }
+
+  void saveConfig() {
+    SpStorage.instance.saveMuYuConfig(
+      counter: _counter,
+      activeImageIndex: _activeImageIndex,
+      activeAudioIndex: _activeAudioIndex,
+    );
   }
 
   ///切换图片
@@ -188,4 +203,17 @@ class _MuYuPageState extends State<MuYuPage> {
           );
         });
   }
+
+  void initConfig() async {
+    Map<String, dynamic> config = await SpStorage.instance.readMuYuConfig();
+
+    _counter = config["counter"] ?? 0;
+    _activeImageIndex = config["activeImageIndex"] ?? 0;
+    _activeAudioIndex = config["activeAudioIndex"] ?? 0;
+    _records = await DbStorage.instance.meritRecordDao.query();
+    setState(() {});
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
