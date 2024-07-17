@@ -1,6 +1,25 @@
 import 'day01.dart';
+import 'day02_fun_object.dart';
+import 'day03_file.dart';
 
 void main(List<String> arguments) {
+  //testDay01();
+  testDay02();
+  testDay03();
+}
+
+void testDay03() {
+  var day03 = Day03File();
+  day03.readFile();
+}
+
+void testDay02() {
+  var day02 = Day02();
+  day02.testFun();
+  day02.testNumType();
+}
+
+void testDay01() {
   var day01 = Day01();
   day01.countOperation();
   day01.compareOperation();
