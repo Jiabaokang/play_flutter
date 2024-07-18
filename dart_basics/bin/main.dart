@@ -3,7 +3,7 @@ import 'day02_fun_object.dart';
 import 'day03_file.dart';
 
 void main(List<String> arguments) {
-  //testDay01();
+  testDay01();
   testDay02();
   testDay03();
 }

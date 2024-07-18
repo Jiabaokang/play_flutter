@@ -103,7 +103,7 @@ class Day01 {
 
   Future<void> readFile() async {
     // 文件路径
-    final filePath = '/Users/jiabaokang/AndroidDeveloper/FlutterProject/play_flutter/pubspec.yaml'; // 替换为你的文件路径
+    final filePath = '/Users/jiabaokang/AndroidDeveloper/FlutterProject/play_flutter/pubspec.yaml';
     // 读取文件
     final file = File(filePath);
     final fileContent = await file.readAsString();
