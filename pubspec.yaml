@@ -75,6 +75,7 @@ dependencies:
 
   #判断list是否相等
   collection: ^1.18.0
+  # 跳转页面系统相关页面 https://pub.flutter-io.cn/packages/url_launcher
   url_launcher: ^6.1.5
 
   # Lottie动画 https://pub.flutter-io.cn/packages/flutter_lottie
@@ -98,6 +99,12 @@ dependencies:
 
   #数据库 https://pub.flutter-io.cn/packages/sqflite
   sqflite: ^2.2.3
+
+  # webview https://pub.flutter-io.cn/packages/webview_flutter
+  webview_flutter: ^4.8.0
+  # 刷新 https://pub.flutter-io.cn/packages/easy_refresh
+  easy_refresh: ^3.4.0
+  universal_platform: ^1.1.0
 
 
 dev_dependencies:

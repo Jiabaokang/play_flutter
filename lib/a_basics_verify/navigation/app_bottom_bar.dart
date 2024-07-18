@@ -30,6 +30,7 @@ class AppBottomBar extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 2.0,
       iconSize: 24.0,
+      unselectedItemColor: Colors.blueGrey,
       selectedItemColor: Theme.of(context).primaryColor,
       selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       showSelectedLabels: true,
