@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.19.0
 
   #UI相关
+  # 提示 https://pub-web.flutter-io.cn/packages/oktoast
   oktoast: ^3.4.0
   flutter_swiper_null_safety_flutter3: ^4.0.3
   # 下拉刷新 支持flutter3 [https://github.com/peng8350/flutter_pulltorefresh]
@@ -83,7 +84,7 @@ dependencies:
   # 加载SVG图片 https://pub.flutter-io.cn/packages/flutter_svg
   flutter_svg: ^2.0.10+1
   # Toast提示 https://pub.flutter-io.cn/packages/fluttertoast
-  fluttertoast: ^8.0.9
+  fluttertoast: ^8.2.6
   # https://pub.flutter-io.cn/packages/permission_handler/example
   permission_handler: ^11.3.1
   # 图片保存本地 https://pub.flutter-io.cn/packages/image_gallery_saver
@@ -105,6 +106,8 @@ dependencies:
   # 刷新 https://pub.flutter-io.cn/packages/easy_refresh
   easy_refresh: ^3.4.0
   universal_platform: ^1.1.0
+  # 提示：https://pub-web.flutter-io.cn/packages/fluttertoast
+
 
 
 dev_dependencies:

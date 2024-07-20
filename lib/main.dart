@@ -16,7 +16,11 @@ void main() async {
 
   /// Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarBrightness: Brightness.dark));
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+    ),
+  );
 
   /// 渲染界面
   runApp(OKToast(

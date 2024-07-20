@@ -51,7 +51,7 @@ class _GuessPageState extends State<GuessPage> with AutomaticKeepAliveClientMixi
   _generateRandomValue() {
     setState(() {
       _isGuessing = true;
-      _value = random.nextInt(50);
+      _value = random.nextInt(100);
 
       ///保存配置信息
       SpStorage.instance.saveGuessConfig(guessing: _isGuessing, value: _value);
