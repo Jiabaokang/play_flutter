@@ -72,18 +72,22 @@ class HttpRequest {
         _onError(HttpException.netError, '网络异常，请检查你的网络！', fail);
         return;
       }
+
+      ///cast可以将Map键可以安全地转换为 String 类型，例如：params.cast<String, dynamic>();
+      Map<String, dynamic> stringKeyMap = params.cast<String, dynamic>();
+
       Dio _dio = createInstance(isJson);
       Response response = await _dio.request(path,
-          data: params, options: Options(method: _MethodValue[method], headers: _headerToken()));
+          data: stringKeyMap, options: Options(method: _MethodValue[method], headers: _headerToken()));
 
       ///设置成功的数据
       if (success != null) {
         success(response.data);
       }
-    } on DioError catch (e) {
-      NetError netError = HttpException.handleException(e);
+    } on DioException catch (error) {
+      NetError netError = HttpException.handleException(error);
       _onError(netError.code, netError.msg, fail);
-      debugPrint("异常=====>$e");
+      debugPrint("异常=====>$error");
     }
   }
 }

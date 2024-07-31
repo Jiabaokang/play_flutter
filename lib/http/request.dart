@@ -12,21 +12,20 @@ import 'package:play_flutter/utils/toast_util.dart';
 /// date   : 2022/3/17 00:55
 /// desc   : 执行网络请求
 class Request {
-
   /// 发起GET请求
   /// [url] 请求url
   /// [parameters] 请求参数
   /// [success] 请求成功回调
   /// [fail] 请求失败回调
   static void get<T>(
-      String url,
-      parameters, {
-        bool isJson = false,
-        bool dialog = true,
-        Success<T>? success,
-        Fail? fail,
-      }) {
-    _request(Method.GET, url, parameters,isJson: isJson ,dialog: dialog, success: success, fail: fail);
+    String url,
+    parameters, {
+    bool isJson = false,
+    bool dialog = true,
+    Success<T>? success,
+    Fail? fail,
+  }) {
+    _request(Method.GET, url, parameters, isJson: isJson, dialog: dialog, success: success, fail: fail);
   }
 
   /// 发起POST请求
@@ -35,14 +34,14 @@ class Request {
   /// [success] 请求成功回调
   /// [fail] 请求失败回调
   static void post<T>(
-      String url,
-      parameters, {
-        bool isJson = false,
-        bool dialog = true,
-        Success<T>? success,
-        Fail? fail,
-      }) {
-    _request(Method.POST, url, parameters, isJson: isJson ,dialog: dialog ,success: success, fail: fail);
+    String url,
+    parameters, {
+    bool isJson = false,
+    bool dialog = true,
+    Success<T>? success,
+    Fail? fail,
+  }) {
+    _request(Method.POST, url, parameters, isJson: isJson, dialog: dialog, success: success, fail: fail);
   }
 
   /// 发起PUT请求
@@ -51,14 +50,14 @@ class Request {
   /// [success] 请求成功回调
   /// [fail] 请求失败回调
   static void put<T>(
-      String url,
-      parameters, {
-        bool isJson = false,
-        bool dialog = true,
-        Success<T>? success,
-        Fail? fail,
-      }) {
-    _request(Method.PUT, url, parameters,isJson: isJson ,dialog: dialog, success: success, fail: fail);
+    String url,
+    parameters, {
+    bool isJson = false,
+    bool dialog = true,
+    Success<T>? success,
+    Fail? fail,
+  }) {
+    _request(Method.PUT, url, parameters, isJson: isJson, dialog: dialog, success: success, fail: fail);
   }
 
   /// 发起DELETE请求
@@ -67,16 +66,15 @@ class Request {
   /// [success] 请求成功回调
   /// [fail] 请求失败回调
   static void delete<T>(
-      String url,
-      parameters, {
-        bool isJson = false,
-        bool dialog = true,
-        Success<T>? success,
-        Fail? fail,
-      }) {
-    _request(Method.DELETE, url, parameters, isJson: isJson ,dialog: dialog ,success: success, fail: fail);
+    String url,
+    parameters, {
+    bool isJson = false,
+    bool dialog = true,
+    Success<T>? success,
+    Fail? fail,
+  }) {
+    _request(Method.DELETE, url, parameters, isJson: isJson, dialog: dialog, success: success, fail: fail);
   }
-
 
   /// 发起网络请求
   /// [method]网络请求方式
@@ -87,15 +85,14 @@ class Request {
   /// [success]请求成功的回调
   /// [fail]请求失败的回调
   static void _request<T>(Method method, String url, parameters,
-      {bool isJson = false,
-      bool dialog = true,
-      Success<T>? success,
-      Fail? fail}) {
+      {bool isJson = false, bool dialog = true, Success<T>? success, Fail? fail}) {
     if (dialog) {
       //get 扩展方法
       Get.showLoading();
     }
     debugPrint("request url==============> ${RequestApi.baseurl}$url");
+
+    //Map<String, dynamic> _newParameters = parameters.map((key, value) => MapEntry(key.toString(), value));
 
     ///检验参数中是否携带URL
     parameters.forEach((key, value) {
