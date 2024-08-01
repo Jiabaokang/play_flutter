@@ -34,16 +34,21 @@ class MainTabNavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) async {
+          if (didPop) {
+            return;
+          }
+
           if (logic.lastTime == null ||
               DateTime.now().difference(logic.lastTime!) > const Duration(milliseconds: 2000)) {
             logic.lastTime = DateTime.now();
             //提示退出
             showToast("请再按一次，退出应用！", textPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10));
-            return false;
-          } else {
-            return true;
+            if (context.mounted) {
+              Navigator.pop(context);
+            }
           }
         },
         child: PageView.builder(
