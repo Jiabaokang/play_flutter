@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:play_flutter/pages/home_page/home_view.dart';
@@ -8,6 +9,8 @@ import 'package:play_flutter/pages/project_page/project_view.dart';
 import 'package:play_flutter/pages/structure_page/structure_view.dart';
 import 'package:play_flutter/pages/user_page/user_view.dart';
 import 'package:play_flutter/res_custom/strings.dart';
+import 'package:play_flutter/routes/app_routes.dart';
+import 'package:play_flutter/widget/dialog/dialog_common_style.dart';
 import 'main_logic.dart';
 
 /// author : JiaBaoKang
@@ -40,15 +43,10 @@ class MainTabNavPage extends StatelessWidget {
           if (didPop) {
             return;
           }
-
-          if (logic.lastTime == null ||
-              DateTime.now().difference(logic.lastTime!) > const Duration(milliseconds: 2000)) {
-            logic.lastTime = DateTime.now();
-            //提示退出
-            showToast("请再按一次，退出应用！", textPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10));
-            if (context.mounted) {
-              Navigator.pop(context);
-            }
+          final bool shouldPop = await _showBackDialog(context) ?? false;
+          if (context.mounted && shouldPop) {
+            //退出应用
+            SystemNavigator.pop(animated: true);
           }
         },
         child: PageView.builder(
@@ -98,4 +96,36 @@ class MainTabNavPage extends StatelessWidget {
           label: StringStyles.tabUser.tr,
         ),
       ];
+
+  Future<bool?> _showBackDialog(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('确定退出应用吗?'),
+          content: const Text('您确定要离开此页面吗?'),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('取消'),
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('确定'),
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
