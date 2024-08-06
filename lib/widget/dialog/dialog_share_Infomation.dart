@@ -9,6 +9,7 @@ import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/res_custom/style.dart';
 import 'package:play_flutter/utils/file/cache_utils.dart';
 import 'package:play_flutter/utils/navigate_utils.dart';
+import 'package:play_flutter/utils/web_util.dart';
 import 'package:play_flutter/widget/dialog/base_dialog.dart';
 
 /// author : JiaBaoKang
@@ -49,7 +50,7 @@ class ShareDialog extends StatelessWidget {
           children: [
             ///浏览器图标
             _buildShareIcon(Icons.public_sharp, ColorStyle.color_24CF5F, StringStyles.openBrowser.tr,
-                () => Navigate.launchInBrowser(url)),
+                () => WebUtil.launchInBrowser(url)),
 
             ///保存到本地的图标
             _buildShareIcon(

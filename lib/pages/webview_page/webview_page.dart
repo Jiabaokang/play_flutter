@@ -10,6 +10,7 @@ import 'package:play_flutter/res/assets_res.dart';
 import 'package:play_flutter/res_custom/colors.dart';
 import 'package:play_flutter/utils/toast_util.dart';
 import 'package:play_flutter/widget/_toolbar.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends GetCommonView<WebViewLogic> {
@@ -44,7 +45,8 @@ class WebViewPage extends GetCommonView<WebViewLogic> {
                     borderRadius: BorderRadius.circular(20),
                     splashColor: ColorStyle.color_E2E3E8_66,
                     onTap: () {
-                      ToastUtil.show("msg");
+                      Share.shareUri(Uri.parse(controller.detail.link));
+                      //Share.share(controller.detail.link, subject: controller.detail.title);
                     },
                     child: SvgPicture.asset(
                       AssetsRes.SHARE,
