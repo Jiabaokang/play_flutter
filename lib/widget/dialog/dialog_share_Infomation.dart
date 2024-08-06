@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:play_flutter/base/get/get_extension_method.dart';
+import 'package:play_flutter/res/assets_res.dart';
 import 'package:play_flutter/res_custom/button_style.dart';
-import 'package:play_flutter/res/r.dart';
 import 'package:play_flutter/res_custom/colors.dart';
 import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/res_custom/style.dart';
@@ -39,7 +39,7 @@ class ShareDialog extends StatelessWidget {
         ),
         Box.vBox10,
         Image.asset(
-          R.assetsImagesShareQRCode,
+          AssetsRes.SHARE_QRCODE,
           width: 120,
           height: 120,
         ),
@@ -53,24 +53,11 @@ class ShareDialog extends StatelessWidget {
 
             ///保存到本地的图标
             _buildShareIcon(
-                Icons.download,
-                ColorStyle.color_FE8C28,
-                StringStyles.shareSaveLocal.tr,
-                () => {
-                      ///申请存储权限
-                      Permission.storage.request().then((value) async {
-                        ///存储权限申请成功后，保存图片到本机中
-                        if (value.isGranted) {
-                          CacheUtils.saveAssetsGallery(assets: R.assetsImagesShareQRCode);
-                        } else {
-                          ///打开设置界面
-                          openAppSettings();
-                          // if (await Permission.speech.isPermanentlyDenied) {
-                          //   openAppSettings();
-                          // }
-                        }
-                      })
-                    }),
+              Icons.download,
+              ColorStyle.color_FE8C28,
+              StringStyles.shareSaveLocal.tr,
+              saveImage(),
+            ),
           ],
         ),
         Box.vBox30,
@@ -86,6 +73,22 @@ class ShareDialog extends StatelessWidget {
         )
       ],
     ));
+  }
+
+  saveImage() {
+    ///申请存储权限
+    Permission.storage.request().then((value) async {
+      ///存储权限申请成功后，保存图片到本机中
+      if (value.isGranted) {
+        CacheUtils.saveAssetsGallery(assets: AssetsRes.SHARE_QRCODE);
+      } else {
+        ///打开设置界面
+        openAppSettings();
+        // if (await Permission.speech.isPermanentlyDenied) {
+        //   openAppSettings();
+        // }
+      }
+    });
   }
 
   ///返回手势检测器

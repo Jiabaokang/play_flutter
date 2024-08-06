@@ -20,8 +20,7 @@ class RequestRepository {
 
   ///首页Banner数据
   getBanner({Success<List<BannerBean>>? success, Fail? fail}) {
-    Request.get<List<dynamic>>(RequestApi.apiBanner, {}, dialog: false,
-        success: (data) {
+    Request.get<List<dynamic>>(RequestApi.apiBanner, {}, dialog: false, success: (data) {
       if (success != null) {
         var list = data.map((item) => BannerBean.fromJson(item)).toList();
         success(list);
@@ -47,9 +46,7 @@ class RequestRepository {
       //成功回调
       success: (data) {
         var pageData = ProjectPage.fromJson(data);
-        List<ProjectDetail> list = pageData.datas
-            .map((value) => ProjectDetail.fromJson(value))
-            .toList();
+        List<ProjectDetail> list = pageData.datas.map((value) => ProjectDetail.fromJson(value)).toList();
         if (success != null) {
           success(list, pageData.over);
         }
@@ -68,8 +65,7 @@ class RequestRepository {
     Success<List<WechatPublic>>? success,
     Fail? fail,
   }) {
-    Request.get<List<dynamic>>(RequestApi.apiWechatPublic, {}, dialog: false,
-        success: (data) {
+    Request.get<List<dynamic>>(RequestApi.apiWechatPublic, {}, dialog: false, success: (data) {
       if (success != null) {
         var list = data.map((value) {
           return WechatPublic.fromJson(value);
@@ -98,9 +94,7 @@ class RequestRepository {
       dialog: false,
       success: (data) {
         var projectPage = ProjectPage.fromJson(data);
-        List<ProjectDetail> projectList = projectPage.datas
-            .map((json) => ProjectDetail.fromJson(json))
-            .toList();
+        List<ProjectDetail> projectList = projectPage.datas.map((json) => ProjectDetail.fromJson(json)).toList();
 
         callSuccess(projectList, projectPage.over);
       },
@@ -131,9 +125,7 @@ class RequestRepository {
         //分页数据
         ProjectPage projectData = ProjectPage.fromJson(data);
         //列表数据
-        List<ProjectDetail> projectList = projectData.datas
-            .map((json) => ProjectDetail.fromJson(json))
-            .toList();
+        List<ProjectDetail> projectList = projectData.datas.map((json) => ProjectDetail.fromJson(json)).toList();
 
         ///将请求成成并解析后的数据回调出去
         callSuccess(projectList, projectData.over);
@@ -146,5 +138,24 @@ class RequestRepository {
     );
   }
 
+  ///收藏文章
+  /// [id] 文章id
+  collectArticle(int id, {bool isCollect = false, Success<bool>? success, Fail? fail}) {
+    var url = isCollect ? RequestApi.apiUnCollect : RequestApi.apiCollect;
 
+    Request.post<dynamic>(
+      url.replaceFirst(RegExp('id'), '$id'),
+      {},
+      dialog: false,
+      success: (data) {
+        // if (success != null) {
+        //   success(true);
+        // }
+        success?.call(true);
+      },
+      fail: (code, msg) {
+        fail?.call(code, msg);
+      },
+    );
+  }
 }

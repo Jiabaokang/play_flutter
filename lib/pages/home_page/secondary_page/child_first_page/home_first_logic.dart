@@ -6,7 +6,7 @@ import 'package:play_flutter/base/get/controller/base_page_controller.dart';
 import 'package:play_flutter/model/home_model/banner_bean.dart';
 import 'package:play_flutter/model/project_model/project_model.dart';
 import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
-import 'package:play_flutter/res/r.dart';
+import 'package:play_flutter/res/assets_res.dart';
 import 'package:play_flutter/utils/ext/refresh_extension.dart';
 import 'package:play_flutter/widget/pull_smart_refresher.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -16,7 +16,6 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 /// date   : 2022/3/15 11:28
 /// desc   : 组合页面 控制器层
 class HomeFirstLogic extends BaseGetPageController {
-
   ///首页数据
   List<ProjectDetail> projectData = [];
 
@@ -31,6 +30,7 @@ class HomeFirstLogic extends BaseGetPageController {
 
   ///是否显示换一批按钮
   RxBool showSwitch = false.obs;
+
   ///是否显示删除按钮
   RxBool showDelete = false.obs;
 
@@ -54,7 +54,7 @@ class HomeFirstLogic extends BaseGetPageController {
     request.getBanner(success: (data) {
       ///添加图片
       bannerList.add(BannerBean(
-        imagePath: R.assetsImagesRankingIntegral,
+        imagePath: AssetsRes.RANKING_INTEGRAL,
         isAssets: true,
       ));
       bannerList.addAll(data);
@@ -71,11 +71,9 @@ class HomeFirstLogic extends BaseGetPageController {
     });
   }
 
-
   ///请求首页项目数据
   @override
-  void requestData(RefreshController controller,
-      {Refresh refresh = Refresh.first}) {
+  void requestData(RefreshController controller, {Refresh refresh = Refresh.first}) {
     request.requestFirstPageArticle(page, success: (data, over) {
       RefreshExtension.onSuccess(controller, refresh, over);
 
@@ -126,21 +124,21 @@ class HomeFirstLogic extends BaseGetPageController {
   }
 
   ///换一批新的公众号
-  void notifyRandomPublic(){
-    if(showSwitch.value){
+  void notifyRandomPublic() {
+    if (showSwitch.value) {
       showWechatPublic = getRandomPublicData(wechatPublic);
       update();
-    }else{
+    } else {
       showSwitch.value = true;
     }
   }
 
   ///点击背景隐藏按钮
-  void notifyButtonState(){
-    if(showSwitch.value){
+  void notifyButtonState() {
+    if (showSwitch.value) {
       showSwitch.value = false;
     }
-    if(showDelete.value){
+    if (showDelete.value) {
       showDelete.value = false;
     }
   }
@@ -151,9 +149,4 @@ class HomeFirstLogic extends BaseGetPageController {
     var randomIndex = random.nextInt(data.length - 2);
     return data.sublist(randomIndex, randomIndex + 2);
   }
-
-
-
-
-
 }

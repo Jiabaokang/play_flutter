@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:play_flutter/model/structure_model/wechat_public_model.dart';
 import 'package:play_flutter/pages/user_page/page/head_circle_widget.dart';
-import 'package:play_flutter/res/r.dart';
+import 'package:play_flutter/res/assets_res.dart';
+import 'package:play_flutter/res_custom/image_list.dart';
 import 'package:play_flutter/res_custom/shadow_style.dart';
 import 'package:play_flutter/res_custom/style.dart';
 
@@ -26,14 +27,14 @@ class WechatPublicItem extends StatelessWidget {
           children: [
             Container(
               decoration: ShadowStyle.black12Circle40(),
-              child: R.wechatPublic.containsKey(item.id)
+              child: ImageList.wechatPublic.containsKey(item.id)
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Container(
                         width: 64,
                         height: 64,
                         color: Colors.white,
-                        child: Image.asset(R.wechatPublic[item.id] ?? ""),
+                        child: Image.asset(ImageList.wechatPublic[item.id] ?? ""),
                       ),
                     )
                   : HeadCircleWidget(
@@ -47,7 +48,7 @@ class WechatPublicItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  R.assetsImagesWechat,
+                  AssetsRes.WECHAT,
                   width: 20,
                 ),
                 Box.hBox3,

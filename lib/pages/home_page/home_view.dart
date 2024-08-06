@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/ask_page/ask_view.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/child_first_page/home_first_view.dart';
 import 'package:play_flutter/pages/home_page/secondary_page/square_page/square_view.dart';
-import 'package:play_flutter/res/r.dart';
+import 'package:play_flutter/res/assets_res.dart';
 import 'package:play_flutter/res_custom/colors.dart';
 import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/res_custom/style.dart';
@@ -60,10 +60,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
                 ///搜索按钮
                 Ripple(
-                    child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: SvgPicture.asset(R.assetsImagesSearch, color: Colors.black87, width: 30),
-                )),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: SvgPicture.asset(
+                      AssetsRes.SEARCH,
+                      colorFilter: const ColorFilter.mode(Colors.black87, BlendMode.srcIn),
+                      width: 30,
+                    ),
+                  ),
+                ),
                 const SizedBox(width: 10)
               ],
             ),

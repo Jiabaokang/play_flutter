@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import 'package:get/get.dart';
-import 'package:play_flutter/res/r.dart';
+import 'package:play_flutter/res/assets_res.dart';
 import 'package:play_flutter/res_custom/strings.dart';
 import 'package:play_flutter/routes/app_routes.dart';
 
@@ -59,8 +59,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       body: WillPopScope(
         onWillPop: () => Future.value(false),
         child: Stack(fit: StackFit.expand, children: <Widget>[
-          Image.asset(
-              Theme.of(context).brightness == Brightness.light ? R.assetsImagesSplashBg : R.assetsImagesSplashBgDark,
+          Image.asset(Theme.of(context).brightness == Brightness.light ? AssetsRes.SPLASH_BG : AssetsRes.SPLASH_BG_DARK,
               fit: BoxFit.fill),
           AnimatedFlutterLogo(
             animation: _animation,
@@ -140,7 +139,7 @@ class AnimatedFlutterLogo extends AnimatedWidget {
       alignment: Alignment(0, 0.2 + animation.value * 0.3),
       curve: Curves.bounceOut,
       child: Image.asset(
-        R.assetsImagesSplashAndroid,
+        AssetsRes.SPLASH_ANDROID,
         width: 280,
         height: 120,
       ),
@@ -162,12 +161,12 @@ class AnimatedAndroidLogo extends AnimatedWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Image.asset(
-          R.assetsImagesSplashFun,
+          AssetsRes.SPLASH_FUN,
           width: 140 * animation.value,
           height: 80 * animation.value,
         ),
         Image.asset(
-          R.assetsImagesSplashAndroid,
+          AssetsRes.SPLASH_ANDROID,
           width: 200 * (1 - animation.value),
           height: 80 * (1 - animation.value),
         ),
