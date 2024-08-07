@@ -16,7 +16,7 @@ main:程序入口文件
 
 ![image-20240718172553530](https://jbk-img.oss-cn-shenzhen.aliyuncs.com/articleImg/image-20240718172553530.png)![image-20240718172642707](https://jbk-img.oss-cn-shenzhen.aliyuncs.com/articleImg/image-20240718172642707.png)
 
-Flutter项目中 `a_basics_verify` 目录中的代码是学习了dart后使用Flutter开发的一个实践,主要是学习[张风捷特烈](https://github.com/toly1994328)的Flutter相关的小册，
+Flutter项目中 `01_basics_verify` 目录中的代码是学习了dart后使用Flutter开发的一个实践,主要是学习[张风捷特烈](https://github.com/toly1994328)的Flutter相关的小册，
 
 实现了4个小Demo，加深对StatefulWidget、StatelessWidget 派生组件和State类的使用和理解。
 
