@@ -6,6 +6,18 @@ void main(List<String> arguments) {
   testDay01();
   testDay02();
   testDay03();
+  testRegExp();
+}
+
+void testRegExp() {
+  String phoneNumber = "26607551811";
+  RegExp regExp = RegExp(r'^1\d{10}$');
+
+  if (regExp.hasMatch(phoneNumber)) {
+    print('Valid phone number');
+  } else {
+    print('Invalid phone number');
+  }
 }
 
 void testDay03() {

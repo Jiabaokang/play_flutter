@@ -10,6 +10,7 @@ class Day01 {
     print("除: 1 / 2 = ${1 / 2}");
     print("余: 10 % 3 = ${10 % 3}");
     print("商: 10 ～/ 3 = ${10 ~/ 3}");
+    print("除: 10 / 3 = ${10 / 3}");
   }
 
   ///比较运算
@@ -103,7 +104,7 @@ class Day01 {
 
   Future<void> readFile() async {
     // 文件路径
-    final filePath = '/Users/jiabaokang/AndroidDeveloper/FlutterProject/play_flutter/pubspec.yaml';
+    final filePath = '/Users/jiabaokang/AndroidDeveloper/FlutterProject/play_flutter/dart_basics/bin/main.dart';
     // 读取文件
     final file = File(filePath);
     final fileContent = await file.readAsString();

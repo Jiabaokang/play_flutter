@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:play_flutter/02_timer/home_page/button_tools.dart';
+import 'package:play_flutter/02_timer/home_page/model/time_record.dart';
 import 'package:play_flutter/02_timer/home_page/stopwatch_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +16,8 @@ class _HomePageState extends State<HomePage> {
 
   late Ticker _ticker;
   Duration _duration = Duration.zero;
+
+  List<TimeRecord> _records = [];
 
   @override
   void initState() {
@@ -82,10 +84,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 重置秒表
   void onReset() {
     setState(() {
       _duration = Duration.zero;
       _state = StopwatchType.none;
+      _records.clear();
     });
   }
 
@@ -103,7 +107,20 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void onRecorder() {}
+  /// 添加记录
+  void onRecorder() {
+    Duration current = _duration;
+    Duration addition = _duration;
+
+    if (_records.isNotEmpty) {
+      addition = _duration - _records.last.record;
+    }
+
+    // 添加记录，刷新界面
+    setState(() {
+      _records.add(TimeRecord(record: current, addition: addition));
+    });
+  }
 
   List<Widget> _buildActions() {
     return [
