@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:play_flutter/02_timer/home_page/button_tools.dart';
 import 'package:play_flutter/02_timer/home_page/model/time_record.dart';
+import 'package:play_flutter/02_timer/home_page/record_panel.dart';
 import 'package:play_flutter/02_timer/home_page/stopwatch_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   late Ticker _ticker;
   Duration _duration = Duration.zero;
+  Duration _secondDuration = Duration.zero;
 
   List<TimeRecord> _records = [];
 
@@ -33,6 +35,10 @@ class _HomePageState extends State<HomePage> {
       dt = elapsed - lastDuration;
       _duration = _duration + dt;
       lastDuration = elapsed;
+
+      if (_records.isNotEmpty) {
+        _secondDuration = _duration - _records.last.record;
+      }
     });
   }
 
@@ -64,14 +70,15 @@ class _HomePageState extends State<HomePage> {
     return StopwatchWidget(
       radius: radius,
       duration: _duration,
+      secondDuration: _secondDuration,
     );
   }
 
   Widget buildRecordPanel() {
     return Expanded(
-      child: Container(
-          // color: Colors.yellow,
-          ),
+      child: RecordPanel(
+        records: _records,
+      ),
     );
   }
 
@@ -88,6 +95,7 @@ class _HomePageState extends State<HomePage> {
   void onReset() {
     setState(() {
       _duration = Duration.zero;
+      _secondDuration = Duration.zero;
       _state = StopwatchType.none;
       _records.clear();
     });

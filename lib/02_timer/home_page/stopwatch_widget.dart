@@ -6,6 +6,7 @@ import 'package:play_flutter/res/font_res.dart'; // 引入字体资源包
 class StopwatchWidget extends StatelessWidget {
   final double radius; // 圆形秒表的半径
   final Duration duration; // 秒表的持续时间
+  final Duration secondDuration;
   final Color? themeColor; // 秒表主题颜色
   final TextStyle? textStyle; // 文本样式
   final Color scaleColor; // 刻度颜色
@@ -15,6 +16,7 @@ class StopwatchWidget extends StatelessWidget {
     super.key,
     required this.radius, // 必需参数，秒表半径
     required this.duration, // 必需参数，持续时间
+    this.secondDuration = Duration.zero,
     this.scaleColor = Colors.black26, // 可选参数，默认为黑色26%透明度
     this.themeColor, // 可选参数，主题颜色
     this.textStyle, // 可选参数，文本样式
@@ -35,15 +37,12 @@ class StopwatchWidget extends StatelessWidget {
     final themeColor = this.themeColor ?? Theme.of(context).primaryColor; // 获取主题颜色
     return CustomPaint(
       painter: StopwatchPainter(
-        radius: radius,
-        // 传递半径
-        duration: duration,
-        // 传递持续时间
-        themeColor: themeColor,
-        // 传递主题颜色
-        scaleColor: scaleColor,
-        // 传递刻度颜色
+        radius: radius, // 传递半径
+        duration: duration, // 传递持续时间
+        themeColor: themeColor, // 传递主题颜色
+        scaleColor: scaleColor, // 传递刻度颜色
         textStyle: style, // 传递文本样式
+        secondDuration: secondDuration, // 传递分钟时间
       ),
       size: Size(radius * 2, radius * 2), // 设置画布大小为直径
     );
@@ -57,16 +56,19 @@ const _kStrokeWidthRate = 0.8 / 135.0;
 
 // 自定义秒表画笔
 class StopwatchPainter extends CustomPainter {
-  final double radius; // 圆形秒表的半径
   final Duration duration; // 秒表的持续时间
+  final Duration secondDuration; // 分钟时间
+
+  final double radius; // 圆形秒表的半径
   final Color themeColor; // 秒表主题颜色
-  final TextStyle textStyle; // 文本样式
   final Color scaleColor; // 刻度颜色
+  final TextStyle textStyle; // 文本样式
 
 // 构造函数
   StopwatchPainter({
     required this.radius, // 必需参数，秒表半径
     required this.duration, // 必需参数，持续时间
+    required this.secondDuration, //分钟时间
     required this.themeColor, // 必需参数，主题颜色
     required this.textStyle, // 必需参数，文本样式
     required this.scaleColor, // 必需参数，刻度颜色
@@ -105,6 +107,29 @@ class StopwatchPainter extends CustomPainter {
     canvas.drawCircle(point, radius, indicatorPainter); // 绘制圆形指针
     canvas.restore(); // 恢复画布状态
     drawText(canvas); // 绘制文字
+    //绘制分钟数
+    if (secondDuration != Duration.zero) {
+      drawSecondDuration(canvas);
+    }
+  }
+
+  /// 绘制分钟数
+  void drawSecondDuration(Canvas canvas) {
+    int minus = secondDuration.inMinutes % 60;
+    int second = secondDuration.inSeconds % 60;
+    int milliseconds = secondDuration.inMilliseconds % 1000;
+    String commonStr = '${minus.toString().padLeft(2, "0")}:${second.toString().padLeft(2, "0")}';
+    String highlightStr = ".${(milliseconds ~/ 10).toString().padLeft(2, "0")}";
+    textPainter.text = TextSpan(
+        text: commonStr + highlightStr,
+        style: textStyle.copyWith(
+          fontSize: textStyle.fontSize! / 3,
+          color: scaleColor,
+        ));
+    textPainter.layout();
+    final double width = textPainter.size.width;
+    final double height = textPainter.size.height;
+    textPainter.paint(canvas, Offset(-width / 2, -height / 2 + textStyle.fontSize! * 0.9));
   }
 
   /// 绘制文字方法

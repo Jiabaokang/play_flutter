@@ -23,17 +23,25 @@ class RecordPanel extends StatelessWidget {
   final EdgeInsets itemPadding = const EdgeInsets.symmetric(horizontal: 16, vertical: 4);
 
   Widget _buildItemByIndex(BuildContext context, int index) {
+    int reverseIndex = records.length - 1 - index;
+    bool lightIndex = reverseIndex == records.length - 1;
+    Color themeColor = Theme.of(context).primaryColor;
+    Color? indexColor = lightIndex ? themeColor : null;
+
     return Row(
       children: [
         Padding(
           padding: itemPadding,
-          child: Text(index.toString().padLeft(2, "0")),
+          child: Text(
+            reverseIndex.toString().padLeft(2, "0"),
+            style: TextStyle(color: indexColor),
+          ),
         ),
-        Text(durationToStr(records[index].record)),
+        Text(durationToStr(records[reverseIndex].record)),
         const Spacer(),
         Padding(
           padding: itemPadding,
-          child: Text("+${durationToStr(records[index].addition)}"),
+          child: Text("+${durationToStr(records[reverseIndex].addition)}"),
         ),
       ],
     );
