@@ -108,6 +108,10 @@ dependencies:
   universal_platform: ^1.1.0
   # 分享：https://pub-web.flutter-io.cn/packages/share_plus
   share_plus: ^10.0.0
+  # 颜色选择器 https://pub-web.flutter-io.cn/packages/flex_color_picker
+  flex_color_picker: ^3.5.1
+  # 状态管理 https://pub-web.flutter-io.cn/packages/flutter_bloc
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:

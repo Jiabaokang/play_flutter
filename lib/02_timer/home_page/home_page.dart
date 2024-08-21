@@ -4,6 +4,7 @@ import 'package:play_flutter/02_timer/home_page/button_tools.dart';
 import 'package:play_flutter/02_timer/home_page/model/time_record.dart';
 import 'package:play_flutter/02_timer/home_page/record_panel.dart';
 import 'package:play_flutter/02_timer/home_page/stopwatch_widget.dart';
+import 'package:play_flutter/02_timer/setting_page/setting_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -164,6 +165,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onSelectedItem(String value) {
-    print(value);
+    if (value == '设置') {
+      //默认跳转
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(
+      //     builder: (cex) => const SettingPage(),
+      //   ),
+      // );
+      // 自定义右到作的跳转动画
+      Navigator.of(context).push(
+        RightToLeftRouter(child: const SettingPage()),
+      );
+    }
   }
+}
+
+/// 路由动画
+class RightToLeftRouter<T> extends PageRouteBuilder<T> {
+  final Widget child;
+  final int durationMs;
+  final Curve curve;
+
+  RightToLeftRouter({required this.child, this.durationMs = 200, this.curve = Curves.fastOutSlowIn})
+      : super(
+          transitionDuration: Duration(milliseconds: durationMs),
+          pageBuilder: (ctx, animation, secondaryAnimation) => child,
+          transitionsBuilder: (ctx, animation, secondaryAnimation, child) => SlideTransition(
+            child: child,
+            position: Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: const Offset(0.0, 0.0),
+            ).animate(CurvedAnimation(parent: animation, curve: curve)),
+          ),
+        );
 }
