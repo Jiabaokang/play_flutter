@@ -1,5 +1,9 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:play_flutter/02_timer/app_config_bloc/app_config_bloc.dart';
+import 'package:play_flutter/02_timer/setting_page/language_select_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -18,16 +22,18 @@ class SettingPage extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: [buildColorItem(context)],
+        children: [buildColorItem(context), buildLocalItem(context)],
       ),
     );
   }
 
   buildColorItem(BuildContext context) {
+    String colorThemeTitle = AppLocalizations.of(context)!.colorThemeTitle;
+    String colorThemeSubTitle = AppLocalizations.of(context)!.colorThemeSubTitle;
     return ListTile(
       onTap: () => _selectColor(context),
-      title: const Text('选择主题色'),
-      subtitle: const Text('秒表界面的高亮颜色为主题色'),
+      title: Text(colorThemeTitle),
+      subtitle: Text(colorThemeSubTitle),
       trailing: Container(
         width: 24,
         height: 24,
@@ -39,8 +45,34 @@ class SettingPage extends StatelessWidget {
     );
   }
 
+  buildLocalItem(BuildContext context) {
+    String local = BlocProvider.of<AppConfigBloc>(context).state.locale.languageCode;
+
+    String localTitle = AppLocalizations.of(context)!.localTitle;
+    String localSubTitle = AppLocalizations.of(context)!.localSubTitle;
+
+    return ListTile(
+      onTap: () => _changeLanguage(context),
+      title: Text(localTitle),
+      subtitle: Text(localSubTitle),
+      trailing: Container(
+        width: 24,
+        height: 24,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all()),
+        child: Text(local, style: const TextStyle(height: 1)),
+      ),
+    );
+  }
+
+  _changeLanguage(BuildContext context) {
+    showLanguageSelectDialog(context);
+  }
+
   _selectColor(BuildContext context) async {
     Color initColor = Theme.of(context).primaryColor;
+
+    /// 显示颜色选择器
     final Color newColor = await showColorPickerDialog(
       context,
       initColor,
@@ -72,5 +104,8 @@ class SettingPage extends StatelessWidget {
       ),
       constraints: const BoxConstraints(minHeight: 480, minWidth: 320, maxWidth: 320),
     );
+
+    /// 更新主题色
+    BlocProvider.of<AppConfigBloc>(context).switchThemeColor(newColor);
   }
 }

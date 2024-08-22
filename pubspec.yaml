@@ -30,13 +30,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  flutter_localizations:
-#    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  # https://pub-web.flutter-io.cn/packages/intl/versions
+  intl: ^0.19.0
 
   # iOS图标库
   cupertino_icons: ^1.0.8
-  # https://pub-web.flutter-io.cn/packages/intl/versions
-  intl: ^0.19.0
 
   #UI相关
   # 提示 https://pub-web.flutter-io.cn/packages/oktoast
@@ -124,6 +124,7 @@ dev_dependencies:
 
 # 以下章节专门针对 Flutter资源配置.
 flutter:
+  generate: true
   uses-material-design: true
   fonts:
     - family: iconfont
