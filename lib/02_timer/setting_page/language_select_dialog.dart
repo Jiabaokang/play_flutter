@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:play_flutter/02_timer/app_config_bloc/app_config.dart';
 import 'package:play_flutter/02_timer/app_config_bloc/app_config_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void showLanguageSelectDialog(BuildContext context) {
   List<String> data = AppConfig.languagesSupports.keys.toList();
@@ -19,17 +20,18 @@ class LanguageSelectDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String localDialogTitle = AppLocalizations.of(context)!.localDialogTitle;
     return Material(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 350.0,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                "选择语言",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                localDialogTitle,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
             ),
             Expanded(

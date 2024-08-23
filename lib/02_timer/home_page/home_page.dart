@@ -5,6 +5,7 @@ import 'package:play_flutter/02_timer/home_page/model/time_record.dart';
 import 'package:play_flutter/02_timer/home_page/record_panel.dart';
 import 'package:play_flutter/02_timer/home_page/stopwatch_widget.dart';
 import 'package:play_flutter/02_timer/setting_page/setting_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,9 +52,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String appBarTitle = AppLocalizations.of(context)!.title;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('计时器'),
+        title: Text(appBarTitle),
         backgroundColor: Colors.white,
         actions: _buildActions(),
       ),
@@ -146,26 +148,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<PopupMenuEntry<String>> _buildItem(BuildContext context) {
+    String setting = AppLocalizations.of(context)!.setting;
+    String exit = AppLocalizations.of(context)!.exit;
     return [
-      const PopupMenuItem<String>(
+      PopupMenuItem<String>(
         height: 35,
-        value: '设置',
+        value: setting,
         child: Center(
-          child: Text('设置', style: TextStyle(fontSize: 14)),
+          child: Text(setting, style: TextStyle(fontSize: 14)),
         ),
       ),
-      const PopupMenuItem<String>(
+      PopupMenuItem<String>(
         height: 35,
-        value: '退出',
+        value: exit,
         child: Center(
-          child: Text('退出', style: TextStyle(fontSize: 14)),
+          child: Text(exit, style: TextStyle(fontSize: 14)),
         ),
       )
     ];
   }
 
   void _onSelectedItem(String value) {
-    if (value == '设置') {
+    String setting = AppLocalizations.of(context)!.setting;
+    if (value == setting) {
       //默认跳转
       // Navigator.of(context).push(
       //   MaterialPageRoute(

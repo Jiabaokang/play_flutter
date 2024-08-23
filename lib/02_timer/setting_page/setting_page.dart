@@ -10,12 +10,10 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String settingTitle = AppLocalizations.of(context)!.setting;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          '设置',
-          style: TextStyle(color: Colors.black, fontSize: 16),
-        ),
+        title: Text(settingTitle, style: const TextStyle(color: Colors.black, fontSize: 16)),
         centerTitle: true,
         leading: const BackButton(
           color: Colors.black,
@@ -71,13 +69,14 @@ class SettingPage extends StatelessWidget {
 
   _selectColor(BuildContext context) async {
     Color initColor = Theme.of(context).primaryColor;
+    String colorDialogTitle = AppLocalizations.of(context)!.colorDialogTitle;
 
     /// 显示颜色选择器
     final Color newColor = await showColorPickerDialog(
       context,
       initColor,
       title: Text(
-        "请选择颜色",
+        colorDialogTitle,
         style: Theme.of(context).textTheme.titleLarge,
       ),
       width: 40,
