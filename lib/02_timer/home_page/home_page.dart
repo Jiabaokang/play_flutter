@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:play_flutter/02_timer/home_page/bloc/bloc.dart';
 import 'package:play_flutter/02_timer/home_page/button_tools.dart';
 import 'package:play_flutter/02_timer/home_page/model/time_record.dart';
 import 'package:play_flutter/02_timer/home_page/record_panel.dart';
@@ -15,13 +17,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  StopwatchBloc get stopwatchBloc => BlocProvider.of<StopwatchBloc>(context);
+
   StopwatchType _state = StopwatchType.none;
 
   late Ticker _ticker;
-  Duration _duration = Duration.zero;
+
   Duration _secondDuration = Duration.zero;
 
   List<TimeRecord> _records = [];
+
+  //Duration _duration = Duration.zero;
+  /// 局部更新秒表状态
+  ValueNotifier<Duration> _duration = ValueNotifier(Duration.zero);
 
   @override
   void initState() {
@@ -33,15 +41,23 @@ class _HomePageState extends State<HomePage> {
   Duration lastDuration = Duration.zero;
 
   void _onTick(Duration elapsed) {
-    setState(() {
-      dt = elapsed - lastDuration;
-      _duration = _duration + dt;
-      lastDuration = elapsed;
+    //刷新整个页面
+    // setState(() {
+    //   dt = elapsed - lastDuration;
+    //   _duration = _duration + dt;
+    //   lastDuration = elapsed;
+    //   if (_records.isNotEmpty) {
+    //     _secondDuration = _duration - _records.last.record;
+    //   }
+    // });
 
-      if (_records.isNotEmpty) {
-        _secondDuration = _duration - _records.last.record;
-      }
-    });
+    //改造后只刷新秒表面板
+    dt = elapsed - lastDuration;
+    _duration.value = _duration.value + dt;
+    if (_records.isNotEmpty) {
+      _secondDuration = _duration.value - _records.last.record;
+    }
+    lastDuration = elapsed;
   }
 
   @override
@@ -70,10 +86,16 @@ class _HomePageState extends State<HomePage> {
   Widget buildStopwatchPanel() {
     double radius = MediaQuery.of(context).size.shortestSide / 2 * 0.75;
     //Duration duration = const Duration(minutes: 3, seconds: 28, milliseconds: 50);
-    return StopwatchWidget(
-      radius: radius,
-      duration: _duration,
-      secondDuration: _secondDuration,
+    return ValueListenableBuilder(
+      valueListenable: _duration,
+      builder: (BuildContext context, Duration value, Widget? child) {
+        return StopwatchWidget(
+          radius: radius,
+          duration: value,
+          themeColor: Theme.of(context).primaryColor,
+          secondDuration: _secondDuration,
+        );
+      },
     );
   }
 
@@ -97,7 +119,7 @@ class _HomePageState extends State<HomePage> {
   /// 重置秒表
   void onReset() {
     setState(() {
-      _duration = Duration.zero;
+      _duration = ValueNotifier(Duration.zero);
       _secondDuration = Duration.zero;
       _state = StopwatchType.none;
       _records.clear();
@@ -120,11 +142,11 @@ class _HomePageState extends State<HomePage> {
 
   /// 添加记录
   void onRecorder() {
-    Duration current = _duration;
-    Duration addition = _duration;
+    Duration current = _duration.value;
+    Duration addition = _duration.value;
 
     if (_records.isNotEmpty) {
-      addition = _duration - _records.last.record;
+      addition = _duration.value - _records.last.record;
     }
 
     // 添加记录，刷新界面

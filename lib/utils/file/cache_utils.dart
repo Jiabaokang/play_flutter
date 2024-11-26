@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+//import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:play_flutter/res_custom/strings.dart';
 
@@ -15,7 +15,7 @@ class CacheUtils {
   ///[target] 目标路径
   static saveAssetsGallery({BuildContext? context, String assets = '', String target = ''}) async {
     ByteData bytes = await rootBundle.load(assets);
-    final result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
+    //final result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
 
     showToast(StringStyles.saveSuccess.tr, context: context);
   }

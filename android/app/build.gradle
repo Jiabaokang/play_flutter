@@ -24,16 +24,20 @@ if (flutterVersionName == null) {
 }
 
 def targetSdkVersion = 34
-def minSdkVersion= 24
+def minSdkVersion = 24
 
 android {
-    namespace = "com.jbk.play_flutter"
-    compileSdk = targetSdkVersion
-    ndkVersion = flutter.ndkVersion
+    namespace "com.jbk.play_flutter"
+    ndkVersion "26.1.10909125"
+    compileSdk targetSdkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
 
@@ -59,6 +63,8 @@ android {
         }
     }
 }
+
+
 
 flutter {
     source '../..'

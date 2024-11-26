@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum StopwatchType {
-  none, //初始状态
-  stopped, //停止
-  running //运行
-}
+import 'bloc/bloc.dart';
 
 class ButtonTools extends StatelessWidget {
   const ButtonTools({super.key, required this.state, this.onReset, this.onRecorder, this.toggle});

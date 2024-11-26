@@ -54,7 +54,7 @@ dependencies:
   dio_cookie_manager: 3.1.1
   cookie_jar: 4.0.8
   # 网络检测 https://pub.flutter-io.cn/packages/connectivity
-  connectivity: 3.0.6
+  connectivity_plus: ^6.1.0
   #首选项
   shared_preferences: ^2.0.13
   # 本地json对象存储
@@ -88,7 +88,7 @@ dependencies:
   # https://pub.flutter-io.cn/packages/permission_handler/example
   permission_handler: ^11.3.1
   # 图片保存本地 https://pub.flutter-io.cn/packages/image_gallery_saver
-  image_gallery_saver: ^2.0.3
+#  image_gallery_saver: ^2.0.3
   # 图片选择器 https://pub.flutter-io.cn/packages/image_picker/example
   image_picker: ^1.1.2
 
